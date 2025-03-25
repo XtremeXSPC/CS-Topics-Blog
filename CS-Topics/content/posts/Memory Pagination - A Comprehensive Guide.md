@@ -37,7 +37,7 @@ editPost:
   appendFilePath: true
 ---
 
-![Image Description](/images/virtual_memory_translation.png)
+![[virtual_memory_translation.png]]
 
 ---
 
