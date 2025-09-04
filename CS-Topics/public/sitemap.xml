@@ -2,19 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://lcs-developer.com/categories/</loc>
-    <lastmod>2024-12-23T23:11:30+00:00</lastmod>
-  </url><url>
     <loc>https://lcs-developer.com/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/posts/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/posts/un-problema-di-teoria-dei-numeri/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/categories/</loc>
     <lastmod>2024-12-23T23:11:30+00:00</lastmod>
   </url><url>
     <loc>https://lcs-developer.com/categories/math/</loc>
     <lastmod>2024-12-23T23:11:30+00:00</lastmod>
   </url><url>
     <loc>https://lcs-developer.com/tags/math/</loc>
-    <lastmod>2024-12-23T23:11:30+00:00</lastmod>
-  </url><url>
-    <loc>https://lcs-developer.com/posts/</loc>
     <lastmod>2024-12-23T23:11:30+00:00</lastmod>
   </url><url>
     <loc>https://lcs-developer.com/tags/probability/</loc>

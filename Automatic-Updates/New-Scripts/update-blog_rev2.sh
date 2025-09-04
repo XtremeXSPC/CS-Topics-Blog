@@ -623,7 +623,7 @@ get_creation_date() {
         log_warning "File non trovato per get_creation_date: $file"
         echo "$(date +%Y-%m-%d)"  # Data di fallback
         return
-    }
+    fi
     
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS
