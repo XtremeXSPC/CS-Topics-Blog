@@ -100,7 +100,7 @@ An integer is called "square-free" if it is not divisible by any perfect square 
 
 The theorem linking the Möbius function to our problem states that, given an integer $x$ and a multiset $S$ of integers, the number of elements in $S$ that are coprime with $x$ is given by:
 
-$$\text{count\_coprime}(x, S) = \sum_{d \mid x, \mu(d) \neq 0} \mu(d) \cdot |{s \in S : d \mid s}|$$
+$$\text{countCoprime}(x, S) = \sum_{d \mid x, \mu(d) \neq 0} \mu(d) \cdot |{s \in S : d \mid s}|$$
 
 This formula allows us to calculate the coprimality degree of an element without having to test every individual pair. Instead of $O(n)$ gcd operations, we can perform the calculation based on the divisors of $x$.
 
@@ -114,9 +114,9 @@ The Möbius function values are: $\mu(1)=1, \mu(2)=-1, \mu(3)=-1, \mu(6)=1$.
 
 Applying the formula:
 
-$$\text{count\_coprime}(6, S) = \mu(1)|S_1| + \mu(2)|S_2| + \mu(3)|S_3| + \mu(6)|S_6|$$
+$$\text{countCoprime}(6, S) = \mu(1)|S_1| + \mu(2)|S_2| + \mu(3)|S_3| + \mu(6)|S_6|$$
 
-$$\text{count\_coprime}(6, S) = (1 \cdot 10) + (-1 \cdot 5) + (-1 \cdot 3) + (1 \cdot 1) = 10 - 5 - 3 + 1 = 3$$
+$$\text{countCoprime}(6, S) = (1 \cdot 10) + (-1 \cdot 5) + (-1 \cdot 3) + (1 \cdot 1) = 10 - 5 - 3 + 1 = 3$$
 
 ### 3.3 Implementation of the linear sieve
 
@@ -504,8 +504,8 @@ This reduces the cost of each update from $O(m)$ to $O(d(\text{value}))$, typica
 All values depending only on unique values are computed once:
 
 ```cpp
-vector<int> cached_coprime_degrees;    // Precomputed coprime degrees per unique value
-vector<int> cached_original_values;    // Original values per compressed ID
+vector<int> cached_coprime_degrees;     // Precomputed coprime degrees per unique value
+vector<int> cached_original_values;     // Original values per compressed ID
 vector<vector<int>> cached_occurrences; // Occurrence indices per compressed ID
 ```
 

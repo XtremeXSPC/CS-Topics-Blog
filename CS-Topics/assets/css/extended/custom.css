@@ -1,0 +1,5 @@
+/* Custom CSS for blog post content */
+
+.post-content p {
+  text-align: justify;
+}
