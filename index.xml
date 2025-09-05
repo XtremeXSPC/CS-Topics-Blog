@@ -18,9 +18,9 @@
       <link>https://lcs-developer.com/posts/un-problema-di-teoria-dei-numeri/</link>
       <pubDate>Tue, 26 Aug 2025 22:10:00 +0000</pubDate>
       <guid>https://lcs-developer.com/posts/un-problema-di-teoria-dei-numeri/</guid>
-      <description>&lt;h1 id=&#34;sea-you--coprime-unanalisi-algoritmica-dettagliata&#34;&gt;Sea, You &amp;amp; copriMe: Un&amp;rsquo;analisi algoritmica dettagliata&lt;/h1&gt;
+      <description>&lt;h1 id=&#34;finding-coprime-quadruples-an-algorithmic-analysis-of-sea-you--coprime&#34;&gt;Finding coprime quadruples: An algorithmic analysis of &amp;ldquo;Sea, you &amp;amp; copriMe&amp;rdquo;&lt;/h1&gt;
 &lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
-&lt;p&gt;Questo articolo presenta un&amp;rsquo;analisi completa del problema di trovare quadrupli coprimi in array di grandi dimensioni, un problema che emerge nell&amp;rsquo;ambito della programmazione competitiva ma che rivela interessanti connessioni con la teoria dei numeri e la teoria dei grafi. Esploriamo come tecniche apparentemente disparate - dal crivello di Eratostene alla teoria dei grafi, dal principio di inclusione-esclusione alle euristiche di ricerca - si combinino per produrre una soluzione elegante ed efficiente. L&amp;rsquo;implementazione finale dimostra come la comprensione profonda delle proprietà matematiche del problema possa portare a ottimizzazioni algoritmiche significative.&lt;/p&gt;</description>
+&lt;p&gt;This article presents a comprehensive algorithmic analysis and solution to the problem of finding quadruples of distinct indices in an integer array that form two coprime pairs. While originating from competitive programming, this problem offers an excellent opportunity to explore the intersections between number theory, graph theory, and efficient algorithm design. We demonstrate how the combination of concepts such as the Sieve of Eratosthenes, the Möbius function, the inclusion-exclusion principle, and heuristic search strategies enables the development of a robust and elegant solution. The final implementation demonstrates how deep understanding of underlying mathematical properties is fundamental to achieving decisive algorithmic optimizations.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Central Limit Theorem</title>
