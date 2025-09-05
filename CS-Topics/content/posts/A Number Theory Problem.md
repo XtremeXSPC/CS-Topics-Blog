@@ -37,7 +37,11 @@ editPost:
   Text: Suggest Changes
   appendFilePath: true
 ---
-# Finding coprime quadruples: An algorithmic analysis of "Sea, you & copriMe"
+# Finding coprime quadruples
+
+## An algorithmic analysis of "Sea, you & copriMe"
+
+---
 
 ## Abstract
 
@@ -57,8 +61,8 @@ In the realm of algorithmic problem solving, certain challenges distinguish them
 **Output:**
 
 - Four distinct indices $(p, q, r, s)$ such that the greatest common divisor of the corresponding element pairs is unity:
-    - $\gcd(a_p, a_q) = 1$
-    - $\gcd(a_r, a_s) = 1$
+  - $\gcd(a_p, a_q) = 1$
+  - $\gcd(a_r, a_s) = 1$
 - If no such quadruple exists, the output should be `0`
 
 The primary challenge lies in the dimensional constraints of the input. A brute force approach examining all possible combinations of four indices would result in $O(n^4)$ time complexity, a prohibitive value for $n$ on the order of $2 \times 10^5$. It is therefore imperative to develop a strategy that exploits the intrinsic mathematical structure of the problem to drastically reduce the solution space to be explored.
@@ -528,14 +532,13 @@ void solve() {
 The resolution of the "Sea, You & copriMe" problem constitutes an excellent example of how the synergistic application of concepts from different areas of mathematics and computer science can lead to efficient solutions for computationally challenging problems. The pillars of this solution have been:
 
 1. **Problem Abstraction**: Translating the problem into a graph model provided the conceptual framework for reasoning about its structure.
-    
+
 2. **Power of Number Theory**: The employment of the Möbius function and inclusion-exclusion principle proved fundamental for performing otherwise prohibitive calculations.
-    
+
 3. **Stratified Algorithm Design**: Prioritized handling of special and simple cases allowed avoiding complex computations for a vast class of inputs.
-    
+
 4. **Effective Heuristics**: The use of heuristics, such as priority to low-degree vertices and bounded search, drastically reduced the search space while maintaining solution correctness.
-    
+
 5. **Modern C++ Implementation**: Leveraging modern C++ features like structured bindings, `std::span`, and designated initializers improved both performance and code readability.
-    
 
 This approach demonstrates that, even in the modern context, mastery of classical algorithms and fundamental mathematical structures remains an irreplaceable and highly powerful tool for software engineering and complex problem solving. The combination of theoretical insights with practical implementation considerations showcases the elegance that can be achieved when mathematical rigor meets engineering pragmatism.

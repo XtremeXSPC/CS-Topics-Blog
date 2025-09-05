@@ -60,7 +60,7 @@ For storing the data itself, we'll implement a circular buffer in shared memory 
 
 ---
 
-### Producer Code (`producer.c`):
+### Producer Code (`producer.c`)
 
 ```c
 #include <stdio.h>
@@ -216,7 +216,7 @@ void cleanup(void) {
 
 ---
 
-### Consumer Code (`consumer.c`):
+### Consumer Code (`consumer.c`)
 
 ```c
 #include <stdio.h>
@@ -414,21 +414,20 @@ The `-lrt` flag links against the real-time library (needed for shared memory 
 To see our producer-consumer solution in action, you'll need to run the producer and consumer processes simultaneously. Open two terminal windows:
 
 1. In the first terminal, start the producer:
-    
+
     ```bash
     ./producer
     ```
-    
+
     You should see messages indicating that the producer is creating items and placing them in the buffer.
-    
+
 2. In the second terminal, start the consumer:
-    
+
     ```bash
     ./consumer
     ```
-    
+
     The consumer will start retrieving items from the buffer and processing them.
-    
 
 Watch both terminals to observe the interaction between the processes. You'll see how the producer adds items to the buffer and the consumer removes them, all coordinated through our synchronization mechanisms.
 
@@ -537,12 +536,12 @@ When process A stores a pointer (like `buffer = malloc(...)`) in shared memory,
 Let's visualize what happens:
 
 1. **Producer process** (Process A):
-    
+
     - Allocates memory with `malloc(BUFFER_SIZE * sizeof(int))`, getting address `0x7f8e42c00000`
     - Stores this address in `data->buffer` in shared memory
     - In Process A's memory map, `0x7f8e42c00000` points to the allocated buffer
 2. **Consumer process** (Process B):
-    
+
     - Reads `data->buffer` from shared memory, getting `0x7f8e42c00000`
     - In Process B's memory map, this address either points to completely different memory or is invalid
     - When Process B tries to access `data->buffer[i]`, it either reads random data or crashes with a segmentation fault

@@ -62,75 +62,73 @@ The beauty of paging is its transparency—application developers don't need to 
 When I first learned about memory management, I wondered why we needed such a complex system. Couldn't we just allocate memory sequentially? The answer lies in several critical advantages that paging offers:
 
 1. **Elimination of External Fragmentation**
-    
+
     External fragmentation occurs when free memory exists in small, non-contiguous chunks that can't be used effectively. Imagine trying to park a bus in a parking lot that has enough total free space, but spread across individual car spots—it simply won't fit.
-    
+
     With paging, since both logical and physical memory are divided into fixed-size chunks, any free frame can accommodate any page. It's like having a parking lot where all spaces are the same size, and you can park anywhere there's an opening.
-    
+
 2. **Simplification of Memory Allocation**
-    
+
     Memory allocation becomes remarkably simpler with paging. The operating system needs only to find any available frame for a new page, rather than searching for a contiguous block of memory large enough for an entire process.
-    
+
     Consider how much easier it is to find a single empty shelf for a book versus finding several adjacent empty shelves for a multi-volume encyclopedia.
-    
+
 3. **Efficient Use of Physical Memory**
-    
+
     Modern systems use techniques like demand paging, where pages are loaded into memory only when accessed. This is like a library that only retrieves books from storage when someone actually requests them, rather than keeping all books on display at all times.
-    
+
     This approach dramatically reduces memory overhead and allows systems to run more processes simultaneously than would otherwise be possible.
-    
+
 4. **Support for Virtual Memory**
-    
+
     Paging is the cornerstone of virtual memory implementation. Virtual memory creates the illusion of having more memory than physically available by using disk storage as an extension of RAM.
-    
+
     It's comparable to a library that maintains a small display area but has a vast storage warehouse. Books (pages) can be moved between display (RAM) and storage (disk) as needed, giving the impression of an almost unlimited display capacity.
-    
+
 5. **Process Isolation**
-    
+
     Security in multi-user, multi-process environments is paramount. Paging provides robust isolation by ensuring that each process can only access its own memory pages.
-    
+
     Think of it as having separate, private reading rooms in our library where each reader can only access the books assigned to them, preventing them from interfering with others' materials.
-    
 
 ### How Does Paging Work?
 
 Now, let's dive deeper into the mechanics of paging:
 
 1. **Logical Addresses vs. Physical Addresses**
-    
+
     When an application runs, it generates logical addresses—locations in memory from the application's perspective. These logical addresses must be translated to physical addresses—actual locations in hardware memory—before any data can be accessed.
-    
+
     In paging systems, logical addresses consist of two parts:
-    
+
     - **Page Number**: Identifies which page in the logical address space
     - **Offset**: Specifies the exact byte position within that page
-    
+
     For example, with a page size of 4KB (4,096 bytes), a logical address of 12,345 would be broken down as:
-    
+
     - Page Number: 12,345 ÷ 4,096 = 3 (integer division)
     - Offset: 12,345 % 4,096 = 57
-    
+
     This means the address refers to the 57th byte of page 3.
-    
+
 2. **Translation via Page Table**
-    
+
     The operating system maintains a page table for each process. This table is essentially a mapping directory that converts page numbers to frame numbers.
-    
+
     When the CPU encounters a logical address, the memory management unit (MMU) extracts the page number and looks it up in the page table. This lookup returns the corresponding frame number in physical memory. The physical address is then constructed by combining this frame number with the original offset.
-    
+
     **Formula for Address Translation:**
-    
+
     Physical Address = (Frame Number × Page Size) + Offset
-    
+
     Using our previous example:
-    
+
     - Page Number: 3
     - Offset: 57
     - If the page table indicates Page 3 maps to Frame 8
     - Physical Address = (8 × 4,096) + 57 = 32,825
-    
+
     This translation happens automatically in hardware for every memory access, making it extremely fast despite its complexity.
-    
 
 Let's visualize this with a simple diagram:
 
@@ -161,6 +159,7 @@ Physical Address (32,825)
 ```
 
 ---
+
 ## Implementing Paging in C: A Practical Example
 
 Let's explore how we might implement a simplified paging system in C. This example won't be a complete operating system implementation, but it will demonstrate the core concepts.
@@ -495,6 +494,7 @@ int main() {
 ```
 
 ---
+
 ## Paging vs. Segmentation: A Deeper Comparison
 
 Now that we understand paging better, let's compare it more thoroughly with segmentation, another memory management approach:
@@ -561,6 +561,7 @@ Physical Memory with Segmentation
 Most modern systems use a hybrid approach called **paged segmentation** or **segmented paging**. Let's explore how this works:
 
 ---
+
 ## Combining Paging and Segmentation: The Best of Both Worlds
 
 In modern systems, we often see a hybrid approach that leverages the benefits of both paging and segmentation. Let's examine how this works in practice:
@@ -663,6 +664,7 @@ Here's a simplified version of how it works:
 This is a complex but powerful approach that has supported decades of backward compatibility while allowing modern operating systems to implement efficient memory management.
 
 ---
+
 ## Practical Implementations: Page Replacement Algorithms
 
 When physical memory is full and a new page needs to be loaded, the operating system must choose a page to evict. Several algorithms exist for this purpose, each with different characteristics. Let's implement a few in C:
@@ -848,6 +850,7 @@ uint32_t replace_page_clock(ClockAlgorithm* clock) {
 ```
 
 ---
+
 ## Real-World Considerations and Challenges
 
 ### Large Page Tables
@@ -857,9 +860,8 @@ As virtual address spaces grow larger, page tables can become enormous. For a 32
 Modern systems address this with multi-level page tables or inverted page tables:
 
 1. **Multi-level Page Tables**: The page table is itself paged, creating a tree-like structure. This approach only requires the parts of the page table that are actually being used to be in memory.
-    
+
 2. **Inverted Page Tables**: Instead of having one entry for each virtual page, an inverted page table has one entry for each physical frame, mapping back to which process and virtual page owns it. This reduces table size but makes lookups more complex.
-    
 
 Here's a simplified implementation of a two-level page table:
 
@@ -937,6 +939,7 @@ While 4KB is the standard page size for many systems, larger pages (2MB or 1GB) 
 The tradeoff is that larger pages can lead to more internal fragmentation. It's a classic space-time tradeoff in computing.
 
 ---
+
 ## Conclusion
 
 Paging is a foundational technique in modern computing that enables efficient memory management, process isolation, and the illusion of unlimited memory through virtual memory. By dividing memory into fixed-size chunks, operating systems can allocate and manage memory with remarkable efficiency, even under the complex demands of multitasking environments.

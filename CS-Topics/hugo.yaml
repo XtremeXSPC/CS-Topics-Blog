@@ -43,10 +43,9 @@ menu:
       url: /search/
       weight: 50
 
-
 params:
   # To enable google analytics, opengraph, twitter-cards and schema.
-  env: production 
+  env: production
   title: LCS.Dev - CS Topics
   description: "Journey of a Computer Science Student"
   keywords: [Blog, Portfolio, Computer Science, Programming, Technology]
@@ -73,8 +72,8 @@ params:
   showtoc: false
   tocopen: false
 
- # customCSS:
- #   - css/extended/custom.css
+  # Custom CSS
+  customCSS: ["/assets/css/extended/custom.css"]
 
   assets:
     # disableHLJS: true # to disable highlight.js
@@ -93,13 +92,13 @@ params:
     icon: "👨‍💻"
     iconHeight: 35
 
- # Home-info mode
+  # Home-info mode
   homeInfoParams:
     Title: "Welcome to LCS.Dev - CS Topics 👨‍💻"
     Content: |
       Hi! I'm **LCS.Dev**, a Computer Science student passionate about programming, 
       technology, and free software. I write about: **Computer Science**, **Programming**, **Technology** and **Math**.
-      
+
       My main focus is on **concurrent systems**, a topic I find both challenging and fascinating.  
       I believe in learning by sharing, and this blog is where I document my journey, explore new ideas,
       and connect with like-minded enthusiasts.  

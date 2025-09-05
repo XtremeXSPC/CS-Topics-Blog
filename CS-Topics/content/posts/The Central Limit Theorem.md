@@ -118,30 +118,28 @@ where $i = \sqrt{-1}$, $t$ is a real number, and $f_X(x)$ is the probability den
 ### Key Properties of Characteristic Functions
 
 1. **Sum of independent random variables**: If $X$ and $Y$ are independent, then: $$\phi_{X+Y}(t) = \phi_X(t) \cdot \phi_Y(t)$$
-    
+
 2. **Linear transformation**: For constants $a$ and $b$: $$\phi_{aX+b}(t) = e^{itb} \cdot \phi_X(at)$$
-    
+
 3. **Standard normal distribution**: The characteristic function of $\mathcal{N}(0, 1)$ is: $$\phi_Z(t) = e^{-t^2/2}$$
-    
 
 ### Proof Sketch
 
 1. **Taylor expansion**: For any random variable $X$ with mean $\mu$ and variance $\sigma^2$, the Taylor expansion of its characteristic function around $t = 0$ gives: $$\phi_X(t) = 1 + it\mu - \frac{\sigma^2 t^2}{2} + o(t^2)$$
-    
+
 2. **Characteristic function of the sum**: For i.i.d. random variables $X_1, X_2, \ldots, X_n$, the characteristic function of their sum is: $$\phi_{S_n}(t) = [\phi_X(t)]^n$$
-    
+
 3. **Normalized sum**: The characteristic function of the standardized sum $Z_n$ is: $$\phi_{Z_n}(t) = \phi_{(S_n - n\mu)/(\sigma\sqrt{n})}(t) = e^{-it\frac{n\mu}{\sigma\sqrt{n}}} \cdot \phi_{S_n}\left(\frac{t}{\sigma\sqrt{n}}\right)$$
-    
+
 4. **Substitution and expansion**: $$\phi_{Z_n}(t) = e^{-it\frac{n\mu}{\sigma\sqrt{n}}} \cdot \left[\phi_X\left(\frac{t}{\sigma\sqrt{n}}\right)\right]^n$$
-    
+
     $$= e^{-it\frac{n\mu}{\sigma\sqrt{n}}} \cdot \left[1 + it\frac{\mu}{\sigma\sqrt{n}} - \frac{\sigma^2 t^2}{2\sigma^2 n} + o\left(\frac{1}{n}\right)\right]^n$$
-    
+
     $$= e^{-it\frac{n\mu}{\sigma\sqrt{n}}} \cdot \left[1 + it\frac{\mu}{\sigma\sqrt{n}} - \frac{t^2}{2n} + o\left(\frac{1}{n}\right)\right]^n$$
-    
+
 5. **Taking the limit**: As $n \to \infty$, using the limit formula $(1 + \frac{x}{n})^n \to e^x$: $$\lim_{n \to \infty} \phi_{Z_n}(t) = e^{-it\frac{n\mu}{\sigma\sqrt{n}}} \cdot e^{it\frac{n\mu}{\sigma\sqrt{n}} - \frac{t^2}{2}} = e^{-\frac{t^2}{2}}$$
-    
+
 6. **Conclusion**: Since $e^{-\frac{t^2}{2}}$ is the characteristic function of the standard normal distribution $\mathcal{N}(0, 1)$, and characteristic functions uniquely determine distributions, we conclude that $Z_n$ converges in distribution to $\mathcal{N}(0, 1)$.
-    
 
 ### Lindeberg-Lévy Condition
 
@@ -149,7 +147,7 @@ For the above proof to be valid, we need the Lindeberg-Lévy condition, which es
 
 ## Sample Means and the CLT
 
-A particularly important application of the CLT relates to sample means. Let's define the sample mean: 
+A particularly important application of the CLT relates to sample means. Let's define the sample mean:
 $$ \bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i $$
 
 The CLT can be restated in terms of the sample mean: $$ \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1) \quad \text{as } n \to \infty $$
