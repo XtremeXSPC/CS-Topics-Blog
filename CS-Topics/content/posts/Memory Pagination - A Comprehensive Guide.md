@@ -6,7 +6,7 @@ description: A detailed explanation of virtual memory pagination with C implemen
 draft: false
 math: true
 showToc: true
-TocOpen: true
+TocOpen: false
 UseHugoToc: true
 hidemeta: false
 comments: false
@@ -26,9 +26,9 @@ tags:
 categories:
   - Operating Systems
 cover:
-  image: 
-  alt: 
-  caption: 
+  image:
+  alt:
+  caption:
   relative: false
   hidden: true
 editPost:

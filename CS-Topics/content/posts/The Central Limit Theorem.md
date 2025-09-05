@@ -6,7 +6,7 @@ description: A comprehensive explanation of the Central Limit Theorem with proof
 draft: false
 math: true
 showToc: true
-TocOpen: true
+TocOpen: false
 UseHugoToc: true
 hidemeta: false
 comments: false
@@ -25,9 +25,9 @@ tags:
 categories:
   - Math
 cover:
-  image: 
-  alt: 
-  caption: 
+  image:
+  alt:
+  caption:
   relative: false
   hidden: true
 editPost:

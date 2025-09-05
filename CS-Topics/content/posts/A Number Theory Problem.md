@@ -1,11 +1,12 @@
 ---
 author: LCS.Dev
-date: "2025-08-26T22:10:00.000535"
-title: "Un problema di Teoria dei Numeri"
-description:
+date: 2025-08-26T22:10:00.000535
+title: A Number Theory Problem
+description: Sea, you & copriMe - Analysis.
 draft: false
+math: true
 showToc: true
-TocOpen: true
+TocOpen: false
 UseHugoToc: true
 hidemeta: false
 comments: false
@@ -19,16 +20,19 @@ ShowPostNavLinks: true
 ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 tags:
-  - 
+  - Competitive-Programming
+  - Coding
 categories:
-  - 
-cover: 
-  image: 
-  alt: 
-  caption: 
+  - Math
+  - Programming
+  - C++
+cover:
+  image:
+  alt:
+  caption:
   relative: false
   hidden: true
-editPost: 
+editPost:
   URL: https://github.com/XtremeXSPC/LCS.Dev-Blog/tree/hostinger/
   Text: Suggest Changes
   appendFilePath: true

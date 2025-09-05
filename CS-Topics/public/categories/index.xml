@@ -11,13 +11,27 @@
     </image>
     <generator>Hugo -- 0.149.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Dec 2024 23:11:30 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Aug 2025 22:10:00 +0000</lastBuildDate>
     <atom:link href="https://lcs-developer.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://lcs-developer.com/categories/c&#43;&#43;/</link>
+      <pubDate>Tue, 26 Aug 2025 22:10:00 +0000</pubDate>
+      <guid>https://lcs-developer.com/categories/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Math</title>
       <link>https://lcs-developer.com/categories/math/</link>
-      <pubDate>Mon, 23 Dec 2024 23:11:30 +0000</pubDate>
+      <pubDate>Tue, 26 Aug 2025 22:10:00 +0000</pubDate>
       <guid>https://lcs-developer.com/categories/math/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Programming</title>
+      <link>https://lcs-developer.com/categories/programming/</link>
+      <pubDate>Tue, 26 Aug 2025 22:10:00 +0000</pubDate>
+      <guid>https://lcs-developer.com/categories/programming/</guid>
       <description></description>
     </item>
     <item>

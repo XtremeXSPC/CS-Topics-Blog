@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Math on LCS.Developer</title>
-    <link>https://lcs-developer.com/categories/math/</link>
-    <description>Recent content in Math on LCS.Developer</description>
+    <title>C&#43;&#43; on LCS.Developer</title>
+    <link>https://lcs-developer.com/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on LCS.Developer</description>
     <image>
       <title>LCS.Developer</title>
       <url>https://lcs-developer.com/images/LCS.Dev-Logo.jpg</url>
@@ -12,20 +12,13 @@
     <generator>Hugo -- 0.149.1</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Aug 2025 22:10:00 +0000</lastBuildDate>
-    <atom:link href="https://lcs-developer.com/categories/math/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://lcs-developer.com/categories/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Number Theory Problem</title>
       <link>https://lcs-developer.com/posts/a-number-theory-problem/</link>
       <pubDate>Tue, 26 Aug 2025 22:10:00 +0000</pubDate>
       <guid>https://lcs-developer.com/posts/a-number-theory-problem/</guid>
       <description>Sea, you &amp;amp; copriMe - Analysis.</description>
-    </item>
-    <item>
-      <title>The Central Limit Theorem</title>
-      <link>https://lcs-developer.com/posts/the-central-limit-theorem/</link>
-      <pubDate>Mon, 23 Dec 2024 23:11:30 +0000</pubDate>
-      <guid>https://lcs-developer.com/posts/the-central-limit-theorem/</guid>
-      <description>A comprehensive explanation of the Central Limit Theorem with proofs and applications.</description>
     </item>
   </channel>
 </rss>
