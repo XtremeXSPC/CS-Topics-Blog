@@ -15,9 +15,9 @@
     <atom:link href="https://lcs-developer.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Un problema di Teoria dei Numeri</title>
-      <link>https://lcs-developer.com/posts/un-problema-di-teoria-dei-numeri/</link>
+      <link>https://lcs-developer.com/posts/a-number-theory-problem/</link>
       <pubDate>Tue, 26 Aug 2025 22:10:00 +0000</pubDate>
-      <guid>https://lcs-developer.com/posts/un-problema-di-teoria-dei-numeri/</guid>
+      <guid>https://lcs-developer.com/posts/a-number-theory-problem/</guid>
       <description>&lt;h1 id=&#34;finding-coprime-quadruples-an-algorithmic-analysis-of-sea-you--coprime&#34;&gt;Finding coprime quadruples: An algorithmic analysis of &amp;ldquo;Sea, you &amp;amp; copriMe&amp;rdquo;&lt;/h1&gt;
 &lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
 &lt;p&gt;This article presents a comprehensive algorithmic analysis and solution to the problem of finding quadruples of distinct indices in an integer array that form two coprime pairs. While originating from competitive programming, this problem offers an excellent opportunity to explore the intersections between number theory, graph theory, and efficient algorithm design. We demonstrate how the combination of concepts such as the Sieve of Eratosthenes, the Möbius function, the inclusion-exclusion principle, and heuristic search strategies enables the development of a robust and elegant solution. The final implementation demonstrates how deep understanding of underlying mathematical properties is fundamental to achieving decisive algorithmic optimizations.&lt;/p&gt;</description>
