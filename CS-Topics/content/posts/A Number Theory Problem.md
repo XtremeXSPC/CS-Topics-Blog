@@ -49,7 +49,7 @@ This article presents a comprehensive algorithmic analysis and solution to the p
 
 ---
 
-## 1. Problem formulation and introduction
+## 1. Problem Formulation
 
 In the realm of algorithmic problem solving, certain challenges distinguish themselves through an apparently simple formulation that conceals considerable computational complexity. The problem under examination, titled "Sea, You & copriMe," belongs entirely to this category. Its formal definition is as follows:
 
@@ -69,7 +69,7 @@ The primary challenge lies in the dimensional constraints of the input. A brute 
 
 ---
 
-## 2. The coprimality graph: a structural perspective
+## 2. The Coprimality Graph: a structural perspective
 
 A fundamental initial insight for approaching this problem consists of reformulating it in terms of graph theory. We can model the coprimality relationships between array elements through an undirected graph $G = (V, E)$, defined as follows:
 
@@ -86,11 +86,11 @@ Elements with low coprimality degree represent "scarce resources" in our graph. 
 
 ---
 
-## 3. Fundamental tools from number theory
+## 3. Fundamental tools from Number Theory
 
 To navigate efficiently in the coprimality graph, particularly to calculate vertex degrees, it is necessary to resort to advanced tools from number theory.
 
-### 3.1 The inclusion-exclusion principle and the möbius function
+### 3.1 The inclusion-exclusion principle and the Möbius function
 
 The efficient calculation of the number of elements in a set that are coprime with a given integer $x$ is a classic problem. The most elegant solution employs the inclusion-exclusion principle, formalized through the **Möbius function**, $\mu(n)$. This function is defined for every positive integer $n$ as follows:
 
