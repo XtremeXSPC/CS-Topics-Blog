@@ -37,7 +37,7 @@ editPost:
   Text: Suggest Changes
   appendFilePath: true
 ---
-# Finding coprime quadruples
+# Finding coprime quadruples:
 
 ## An algorithmic analysis of "Sea, you & copriMe"
 
