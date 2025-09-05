@@ -90,7 +90,7 @@ To navigate efficiently in the coprimality graph, particularly to calculate vert
 
 The efficient calculation of the number of elements in a set that are coprime with a given integer $x$ is a classic problem. The most elegant solution employs the inclusion-exclusion principle, formalized through the **Möbius function**, $\mu(n)$. This function is defined for every positive integer $n$ as follows:
 
-$$\mu(n) = \begin{cases} 1 & \text{if } n \text{ is square-free with an even number of distinct prime factors} \ -1 & \text{if } n \text{ is square-free with an odd number of distinct prime factors} \ 0 & \text{if } n \text{ has a squared prime factor} \end{cases}$$
+$$\mu(n) = \begin{cases} 1 & \text{if } n \text{ is square-free with an even number of distinct prime factors} \newline -1 & \text{if } n \text{ is square-free with an odd number of distinct prime factors} \newline 0 & \text{if } n \text{ has a squared prime factor} \end{cases}$$
 
 An integer is called "square-free" if it is not divisible by any perfect square other than 1.
 
