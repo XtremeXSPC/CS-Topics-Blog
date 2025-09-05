@@ -2,20 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://lcs-developer.com/posts/a-number-theory-problem/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/categories/c&#43;&#43;/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/categories/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/tags/coding/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/tags/competitive-programming/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
     <loc>https://lcs-developer.com/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lcs-developer.com/categories/math/</loc>
     <lastmod>2025-08-26T22:10:00+00:00</lastmod>
   </url><url>
     <loc>https://lcs-developer.com/posts/</loc>
     <lastmod>2025-08-26T22:10:00+00:00</lastmod>
   </url><url>
-    <loc>https://lcs-developer.com/posts/a-number-theory-problem/</loc>
+    <loc>https://lcs-developer.com/categories/programming/</loc>
     <lastmod>2025-08-26T22:10:00+00:00</lastmod>
   </url><url>
-    <loc>https://lcs-developer.com/categories/</loc>
-    <lastmod>2024-12-23T23:11:30+00:00</lastmod>
-  </url><url>
-    <loc>https://lcs-developer.com/categories/math/</loc>
-    <lastmod>2024-12-23T23:11:30+00:00</lastmod>
+    <loc>https://lcs-developer.com/tags/</loc>
+    <lastmod>2025-08-26T22:10:00+00:00</lastmod>
   </url><url>
     <loc>https://lcs-developer.com/tags/math/</loc>
     <lastmod>2024-12-23T23:11:30+00:00</lastmod>
@@ -23,14 +38,8 @@
     <loc>https://lcs-developer.com/tags/probability/</loc>
     <lastmod>2024-12-23T23:11:30+00:00</lastmod>
   </url><url>
-    <loc>https://lcs-developer.com/tags/</loc>
-    <lastmod>2024-12-23T23:11:30+00:00</lastmod>
-  </url><url>
     <loc>https://lcs-developer.com/posts/the-central-limit-theorem/</loc>
     <lastmod>2024-12-23T23:11:30+00:00</lastmod>
-  </url><url>
-    <loc>https://lcs-developer.com/tags/coding/</loc>
-    <lastmod>2024-12-19T00:36:58+00:00</lastmod>
   </url><url>
     <loc>https://lcs-developer.com/posts/memory-pagination---a-comprehensive-guide/</loc>
     <lastmod>2024-12-19T00:36:58+00:00</lastmod>
