@@ -1,0 +1,119 @@
+# Hugo configuration file
+baseURL = "https://lcs-developer.com/"
+languageCode = "en-us"
+title = "LCS.Developer"
+languageName = "English"
+paginate = 5
+theme = "LoveIt"
+
+# Enable robots.txt
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+# Google Analytics
+googleAnalytics = "G-CPQPKX3QPR"
+
+# Performance optimization
+[minify]
+  disableXML = true
+  minifyOutput = true
+
+# Hugo configuration for search
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# Blog menu
+[[menu.main]]
+  identifier = "categories"
+  name = "Categories"
+  url = "/categories/"
+  weight = 10
+[[menu.main]]
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+[[menu.main]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 30
+[[menu.main]]
+  identifier = "archives"
+  name = "Archive"
+  url = "/archives/"
+  weight = 40
+[[menu.main]]
+  identifier = "search"
+  name = "Search"
+  url = "/search/"
+  weight = 50
+
+# Markup related configuration in Hugo
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Enable HTML support for markdown
+      unsafe = true
+
+# Parameters for the LoveIt theme
+[params]
+  # Site info
+  title = "LCS.Dev - CS Topics"
+  description = "Journey of a Computer Science Student"
+  keywords = ["Blog", "Portfolio", "Computer Science", "Programming", "Technology"]
+  author = "LCS.Dev"
+  images = ["/images/LCS.Dev-Logo.jpg"]
+  
+  # Date format
+  DateFormat = "January 2, 2006"
+  
+  # Theme settings
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  
+  # Home page settings
+  [params.home]
+    [params.home.profile]
+      enable = true
+      title = "Welcome to LCS.Dev - CS Topics 👨‍💻"
+      subtitle = "Hi! I'm **LCS.Dev**, a Computer Science student passionate about programming, technology, and free software."
+      avatarURL = "/images/LCS.Dev-Logo.jpg"
+      typeit = true
+      social = true
+  
+  # Search
+  [params.search]
+    enable = true
+    type = "lunr"
+  [params.analytics]
+    google = { SiteVerificationTag = "CPQPKX3QPR" }
+  
+  # Custom CSS
+  customCSS = ["/assets/css/extended/custom.css"]
+
+  # Assets
+  [params.assets]
+    favicon = "/favicon/favicon.ico"
+    favicon16x16 = "/favicon/favicon-16x16.png"
+    favicon32x32 = "/favicon/favicon-32x32.png"
+    apple_touch_icon = "/favicon/apple-touch-icon.png"
+    safari_pinned_tab = "/favicon/safari-pinned-tab.svg"
+    theme_color = "#ffffff"
+    msapplication_TileColor = "#ffffff"
+
+  # Social Icons
+  [params.socialIcons]
+  [[params.socialIcons.social]]
+    name = "GitHub"
+    url = "https://github.com/XtremeXSPC"
+  [[params.socialIcons.social]]
+    name = "X"
+    url = "https://x.com/"
+  [[params.socialIcons.social]]
+    name = "Stackoverflow"
+    url = "https://stackoverflow.com"
