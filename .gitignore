@@ -43,3 +43,7 @@
 .tmp.driveupload
 
 .fake
+
+# Directories
+/Backups
+/Automatic-Updates
