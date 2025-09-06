@@ -1,6 +1,6 @@
 ---
 author: LCS.Dev
-date: 2024-12-17T20:30:30.675410
+date: 2024-10-17T20:30:30.675410
 title: Why this blog and how I manage it
 description: A brief description of who I am and how I run my blog.
 draft: false

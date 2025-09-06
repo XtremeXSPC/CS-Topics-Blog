@@ -1,6 +1,6 @@
 ---
 author: LCS.Dev
-date: 2024-12-19T00:36:58.464578
+date: 2024-12-02T00:36:58.464578
 title: Memory Pagination - A Comprehensive Guide
 description: A detailed explanation of virtual memory pagination with C implementation examples.
 draft: false

@@ -1,6 +1,6 @@
 ---
 author: LCS.Dev
-date: 2024-12-19T00:36:58.458443
+date: 2024-11-08T00:36:58.458443
 title: Producer-Consumer Problem with POSIX Synchronization
 description: A robust solution to avoid race conditions in concurrent programming.
 draft: false

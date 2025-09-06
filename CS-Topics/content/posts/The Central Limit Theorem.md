@@ -1,6 +1,6 @@
 ---
 author: LCS.Dev
-date: 2024-12-23T23:11:30.675410
+date: 2025-01-23T23:11:30.675410
 title: The Central Limit Theorem
 description: A comprehensive explanation of the Central Limit Theorem with proofs and applications.
 draft: false
