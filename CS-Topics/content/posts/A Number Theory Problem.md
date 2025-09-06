@@ -45,7 +45,7 @@ editPost:
 
 ## Abstract
 
-This article presents a comprehensive algorithmic analysis and solution to the problem of finding quadruples of distinct indices in an integer array that form two coprime pairs. While originating from competitive programming, this problem offers an excellent opportunity to explore the intersections between number theory, graph theory, and efficient algorithm design. We demonstrate how the combination of concepts such as the Sieve of Eratosthenes, the Möbius function, the inclusion-exclusion principle, and heuristic search strategies enables the development of a robust and elegant solution. The final implementation demonstrates how deep understanding of underlying mathematical properties is fundamental to achieving decisive algorithmic optimizations.
+This article presents a comprehensive algorithmic analysis and solution to the problem of finding quadruples of distinct indices in an integer array that form two coprime pairs. While originating from competitive programming, this problem offers an excellent opportunity to explore the intersections between number theory, graph theory, and efficient algorithm design. I will demonstrate how the combination of concepts such as the Sieve of Eratosthenes, the Möbius function, the inclusion-exclusion principle, and heuristic search strategies enables the development of a robust and elegant solution. The final implementation demonstrates how deep understanding of underlying mathematical properties is fundamental to achieving decisive algorithmic optimizations.
 
 ---
 
@@ -166,9 +166,9 @@ The algorithm adopts a multi-phase approach designed to solve the problem as eff
 
 The first step consists of preparing the data structures that will support subsequent phases:
 
-1. **Linear sieve execution**: Computing Möbius values and prime factorizations
-2. **Frequency and divisibility counting**: Building frequency arrays for efficient lookups
-3. **Value compression**: Identifying unique values and storing their properties
+1. **Linear sieve execution**: Computing Möbius values and prime factorizations.
+2. **Frequency and divisibility counting**: Building frequency arrays for efficient lookups.
+3. **Value compression**: Identifying unique values and storing their properties.
 
 ```cpp
 class ValueCompressor {
