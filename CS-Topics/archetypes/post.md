@@ -2,7 +2,7 @@
 author: LCS.Dev
 date:
 title:
-description: A brief introduction to memory pagination abstraction.
+description:
 draft: false
 showToc: true
 TocOpen: false
