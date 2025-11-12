@@ -1,0 +1,9 @@
+/* Custom styling - text justification only */
+
+/* Justify text in articles for better readability */
+.article-content {
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}

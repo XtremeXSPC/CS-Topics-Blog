@@ -1,52 +1,59 @@
 ---
 title: "About Me"
 layout: "about"
+slug: "about"
 url: "/about/"
 summary: about
+menu:
+    main:
+        weight: 30
+        params:
+            icon: user
 ---
 
-Hello, and welcome to my corner of the internet! 👋  
+Welcome to my academic blog and personal knowledge repository.
 
-I’m a **Computer Science student** in the Department of Computer Science at **University of Bari Aldo Moro**. My passion for technology is boundless, especially when it involves anything programmable. From writing simple scripts to tackling complex systems, I find joy in turning ideas into working code.
-
----
-
-## What Drives Me 🚀
-
-I have a particular interest in **concurrent systems**. Understanding how processes interact, synchronize, and scale fascinates me, and I aim to dive deeper into these aspects through this blog. I believe sharing insights and learning publicly is one of the best ways to grow and refine one's knowledge.
-
-Here, you’ll find thoughts, experiments, and explorations into:
-
-- **Parallel and concurrent programming**
-- System design principles  
-- Programming paradigms and best practices  
+I am a **Computer Science student** in the Department of Computer Science at **University of Bari Aldo Moro**. My research interests span multiple areas of computer science, with a particular focus on formal methods, concurrent systems, and functional programming paradigms.
 
 ---
 
-## My Toolbelt 🛠️
+## Research Interests
 
-I enjoy programming in multiple languages, each offering its own strengths and philosophies. Here’s what I currently work with:
+My primary academic focus centers on **concurrent and parallel systems**, investigating how processes interact, synchronize, and scale in distributed environments. I am particularly interested in developing a deeper understanding of the theoretical foundations and practical implementations of concurrent programming models.
 
-- **C**, **C++**: For performance and systems programming  
-- **Java**, **Kotlin**: When robust, platform-independent applications are the goal  
-- **Rust**: Because memory safety and concurrency can coexist beautifully  
-- **Python**: For scripting, data analysis, and automation  
-- **Go**: When simplicity and speed meet concurrency  
+Recently, I have developed a strong interest in **functional programming** and **formal verification**. I am actively exploring automated theorem provers, specifically **Rocq** (formerly Coq) and **Lean**, which enable rigorous mathematical verification of software correctness through dependent type theory.
 
-I am always eager to learn new tools and technologies that expand my horizons.
+This blog serves as a platform for sharing insights and documenting my learning journey in:
 
----
-
-## My Philosophy: Free and Open 🌍
-
-I’m a strong believer in **Free Software** and a proud user of **Linux**. Open-source communities inspire me, and I try to contribute whenever possible. I believe that software should empower users, not limit them.
+- Parallel and concurrent programming
+- Functional programming paradigms and type theory
+- Formal methods and automated theorem proving
+- System design principles and architectural patterns
+- Programming language theory and implementation
 
 ---
 
-## Let’s Connect! 🌐
+## Technical Background
 
-Whether you’re passionate about programming, open-source software, or concurrent systems, I’d love to hear from you! Let’s exchange ideas, collaborate, and grow together.  
+My work involves programming in multiple languages, each selected for its particular strengths and theoretical foundations:
 
-Thank you for stopping by, and I hope you enjoy exploring my blog! 🧑‍💻  
+- **C**, **C++**: For performance-critical systems programming and low-level optimization
+- **Java**, **Kotlin**: For robust, platform-independent applications with strong type systems
+- **Python**: For rapid prototyping, data analysis, and automation
+- **OCaml**: For exploring functional programming and type-driven development
+
+I maintain an active interest in emerging technologies and programming paradigms, continuously expanding my theoretical knowledge and practical skills.
+
+---
+
+## Philosophy
+
+I am a strong advocate for **Free and Open Source Software** (FOSS) and an active Linux user. I believe in the principles of software freedom and the collaborative nature of open-source development. When possible, I contribute to open-source projects and share my work with the broader community.
+
+---
+
+## Contact
+
+I welcome discussions on programming languages, formal verification, concurrent systems, and related topics in computer science. Feel free to reach out for academic collaboration or technical exchange.
 
 ---
