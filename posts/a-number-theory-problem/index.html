@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Sea, you & copriMe - Analysis.">
+<title>A Number Theory Problem</title>
+
+<link rel='canonical' href='https://lcs-developer.com/posts/a-number-theory-problem/'>
+
+<link rel="stylesheet" href="/scss/style.min.ba330dbb2b728708f200b6de87a9a8847a8917835feee53949f1e22e2dd27360.css"><meta property='og:title' content="A Number Theory Problem">
+<meta property='og:description' content="Sea, you & copriMe - Analysis.">
+<meta property='og:url' content='https://lcs-developer.com/posts/a-number-theory-problem/'>
+<meta property='og:site_name' content='LCS.Developer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Competitive-Programming' /><meta property='article:tag' content='Coding' /><meta property='article:published_time' content='2025-08-26T22:10:00&#43;00:00'/><meta property='article:modified_time' content='2025-08-26T22:10:00&#43;00:00'/><meta property='og:image' content='https://lcs-developer.com/images/LCS.Dev-Logo.jpg' />
+<meta name="twitter:title" content="A Number Theory Problem">
+<meta name="twitter:description" content="Sea, you & copriMe - Analysis."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://lcs-developer.com/images/LCS.Dev-Logo.jpg' />
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-CPQPKX3QPR"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-CPQPKX3QPR');
+        }
+      </script>
+<link rel="stylesheet" href="/scss/custom.min.css">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/LCS.Dev-Logo_hu_af81c46b027b79b7.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👨‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">LCS.Developer</a></h1>
+            <h2 class="site-description">Hi! I&#39;m LCS.Dev, a CS student passionate about programming, technology, and free software.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/XtremeXSPC'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/'
+                        target="_blank"
+                        title="X (Twitter)"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archive</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#an-algorithmic-analysis-of-sea-you--coprime">An algorithmic analysis of &ldquo;Sea, you &amp; copriMe&rdquo;</a></li>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#1-problem-formulation">1. Problem Formulation</a></li>
+    <li><a href="#2-the-coprimality-graph-a-structural-perspective">2. The Coprimality Graph: a structural perspective</a></li>
+    <li><a href="#3-fundamental-tools-from-number-theory">3. Fundamental tools from Number Theory</a>
+      <ul>
+        <li><a href="#31-the-inclusion-exclusion-principle-and-the-möbius-function">3.1 The inclusion-exclusion principle and the Möbius function</a></li>
+        <li><a href="#32-concrete-example">3.2 Concrete example</a></li>
+        <li><a href="#33-implementation-of-the-linear-sieve">3.3 Implementation of the linear sieve</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-a-stratified-algorithmic-strategy">4. A stratified algorithmic strategy</a>
+      <ul>
+        <li><a href="#phase-0-preprocessing-and-data-structures">Phase 0: Preprocessing and data structures</a></li>
+        <li><a href="#phase-1-handling-unit-values">Phase 1: Handling unit values</a></li>
+        <li><a href="#phase-2-exploiting-duplicate-values">Phase 2: Exploiting duplicate values</a></li>
+        <li><a href="#phase-3-single-unit-case">Phase 3: Single unit case</a></li>
+        <li><a href="#phase-4-degree-based-heuristic-search">Phase 4: Degree-based heuristic search</a>
+          <ul>
+            <li><a href="#41-prioritizing-leaf-vertices">4.1 Prioritizing leaf vertices</a></li>
+            <li><a href="#42-bounded-search-with-degree-ordering">4.2 Bounded search with degree ordering</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5-modern-c-implementation-choices">5. Modern C++ implementation choices</a>
+      <ul>
+        <li><a href="#51-structured-bindings-and-auto-declarations">5.1 Structured bindings and auto declarations</a></li>
+        <li><a href="#52-stdspan-for-zero-copy-views">5.2 std::span For zero-copy views</a></li>
+        <li><a href="#53-designated-initializers">5.3 Designated initializers</a></li>
+        <li><a href="#54-constexpr-and-compile-time-optimization">5.4 Constexpr and compile-time optimization</a></li>
+        <li><a href="#55-memory-management-and-cache-optimization">5.5 Memory management and cache optimization</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-complexity-analysis">6. Complexity Analysis</a>
+      <ul>
+        <li><a href="#61-time-complexity">6.1 Time complexity</a></li>
+        <li><a href="#62-space-complexity">6.2 Space complexity</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-performance-considerations-and-optimizations">7. Performance considerations and optimizations</a>
+      <ul>
+        <li><a href="#71-incremental-updates">7.1 Incremental updates</a></li>
+        <li><a href="#72-precomputation-and-caching">7.2 Precomputation and caching</a></li>
+        <li><a href="#73-early-termination">7.3 Early termination</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-conclusion">8. Conclusion</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/math/" >
+                Math
+            </a>
+        
+            <a href="/categories/programming/" >
+                Programming
+            </a>
+        
+            <a href="/categories/c&#43;&#43;/" >
+                C&#43;&#43;
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/a-number-theory-problem/">A Number Theory Problem</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Sea, you &amp; copriMe - Analysis.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 26, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    13 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="finding-coprime-quadruples">Finding coprime quadruples:
+</h1><h2 id="an-algorithmic-analysis-of-sea-you--coprime">An algorithmic analysis of &ldquo;Sea, you &amp; copriMe&rdquo;
+</h2><hr>
+<h2 id="abstract">Abstract
+</h2><p>This article presents a comprehensive algorithmic analysis and solution to the problem of finding quadruples of distinct indices in an integer array that form two coprime pairs. While originating from competitive programming, this problem offers an excellent opportunity to explore the intersections between number theory, graph theory, and efficient algorithm design. I will demonstrate how the combination of concepts such as the Sieve of Eratosthenes, the Möbius function, the inclusion-exclusion principle, and heuristic search strategies enables the development of a robust and elegant solution. The final implementation demonstrates how deep understanding of underlying mathematical properties is fundamental to achieving decisive algorithmic optimizations.</p>
+<hr>
+<h2 id="1-problem-formulation">1. Problem Formulation
+</h2><p>In the realm of algorithmic problem solving, certain challenges distinguish themselves through an apparently simple formulation that conceals considerable computational complexity. The problem under examination, titled &ldquo;Sea, You &amp; copriMe,&rdquo; belongs entirely to this category. Its formal definition is as follows:</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li>An array $a$ of $n$ integers, where $4 \leq n \leq 200,000$</li>
+<li>Each element $a_i$ of the array is within the interval $[1, m]$, where $1 \leq m \leq 1,000,000$</li>
+</ul>
+<p><strong>Output:</strong></p>
+<ul>
+<li>Four distinct indices $(p, q, r, s)$ such that the greatest common divisor of the corresponding element pairs is unity:
+<ul>
+<li>$\gcd(a_p, a_q) = 1$</li>
+<li>$\gcd(a_r, a_s) = 1$</li>
+</ul>
+</li>
+<li>If no such quadruple exists, the output should be <code>0</code></li>
+</ul>
+<p>The primary challenge lies in the dimensional constraints of the input. A brute force approach examining all possible combinations of four indices would result in $O(n^4)$ time complexity, a prohibitive value for $n$ on the order of $2 \times 10^5$. It is therefore imperative to develop a strategy that exploits the intrinsic mathematical structure of the problem to drastically reduce the solution space to be explored.</p>
+<hr>
+<h2 id="2-the-coprimality-graph-a-structural-perspective">2. The Coprimality Graph: a structural perspective
+</h2><p>A fundamental initial insight for approaching this problem consists of reformulating it in terms of graph theory. We can model the coprimality relationships between array elements through an undirected graph $G = (V, E)$, defined as follows:</p>
+<ul>
+<li>The vertex set $V = {1, 2, \ldots, n}$ represents the indices of array $a$</li>
+<li>An edge $(i, j)$ belongs to the edge set $E$ if and only if the corresponding elements are coprime, i.e., $\gcd(a_i, a_j) = 1$</li>
+</ul>
+<p>In this new perspective, the problem translates to finding two edges in $G$ that share no vertices, essentially a <strong>matching</strong> of size two. This abstraction not only clarifies the problem structure but also opens the way to various algorithmic strategies based on graph properties.</p>
+<p>We define the <strong>coprimality degree</strong> of a vertex $i$ as the number of edges incident to it, which corresponds to the number of elements in the array that are coprime with $a_i$:</p>
+<p>$$\deg(i) = |{j \in V, j \neq i \mid \gcd(a_i, a_j) = 1}|$$</p>
+<p>Elements with low coprimality degree represent &ldquo;scarce resources&rdquo; in our graph. For example, a vertex with degree 1 (a &ldquo;leaf vertex&rdquo;) has only one potential partner to form a coprime pair. Prioritized management of such vertices will prove to be an effective heuristic strategy.</p>
+<hr>
+<h2 id="3-fundamental-tools-from-number-theory">3. Fundamental tools from Number Theory
+</h2><p>To navigate efficiently in the coprimality graph, particularly to calculate vertex degrees, it is necessary to resort to advanced tools from number theory.</p>
+<h3 id="31-the-inclusion-exclusion-principle-and-the-möbius-function">3.1 The inclusion-exclusion principle and the Möbius function
+</h3><p>The efficient calculation of the number of elements in a set that are coprime with a given integer $x$ is a classic problem. The most elegant solution employs the inclusion-exclusion principle, formalized through the <strong>Möbius function</strong>, $\mu(n)$. This function is defined for every positive integer $n$ as follows:</p>
+<p>$$\mu(n) = \begin{cases} 1 &amp; \text{if } n \text{ is square-free with an even number of distinct prime factors} \newline -1 &amp; \text{if } n \text{ is square-free with an odd number of distinct prime factors} \newline 0 &amp; \text{if } n \text{ has a squared prime factor} \end{cases}$$</p>
+<p>An integer is called &ldquo;square-free&rdquo; if it is not divisible by any perfect square other than 1.</p>
+<p>The theorem linking the Möbius function to our problem states that, given an integer $x$ and a multiset $S$ of integers, the number of elements in $S$ that are coprime with $x$ is given by:</p>
+<p>$$\text{countCoprime}(x, S) = \sum_{d \mid x, \mu(d) \neq 0} \mu(d) \cdot |{s \in S : d \mid s}|$$</p>
+<p>This formula allows us to calculate the coprimality degree of an element without having to test every individual pair. Instead of $O(n)$ gcd operations, we can perform the calculation based on the divisors of $x$.</p>
+<h3 id="32-concrete-example">3.2 Concrete example
+</h3><p>Suppose we want to calculate the number of elements coprime with $x = 6$ in a multiset $S$ where the counts of multiples are already known: $|S_1|=10, |S_2|=5, |S_3|=3, |S_6|=1$.</p>
+<p>The square-free divisors of 6 are ${1, 2, 3, 6}$.</p>
+<p>The Möbius function values are: $\mu(1)=1, \mu(2)=-1, \mu(3)=-1, \mu(6)=1$.</p>
+<p>Applying the formula:</p>
+<p>$$\text{countCoprime}(6, S) = \mu(1)|S_1| + \mu(2)|S_2| + \mu(3)|S_3| + \mu(6)|S_6|$$</p>
+<p>$$\text{countCoprime}(6, S) = (1 \cdot 10) + (-1 \cdot 5) + (-1 \cdot 3) + (1 \cdot 1) = 10 - 5 - 3 + 1 = 3$$</p>
+<h3 id="33-implementation-of-the-linear-sieve">3.3 Implementation of the linear sieve
+</h3><p>To use the previous formula, we need the values of the Möbius function and the prime factors of integers up to $m$. A <strong>linear sieve</strong> is the ideal tool for this precomputation in $O(m)$ time.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">NumberTheoryEngine</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">static</span> <span class="k">constexpr</span> <span class="n">size_t</span> <span class="n">LIMIT</span> <span class="o">=</span> <span class="mi">1000001</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">LIMIT</span><span class="o">&gt;</span> <span class="n">minimal_prime</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">LIMIT</span><span class="o">&gt;</span> <span class="n">moebius</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">NumberTheoryEngine</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iota</span><span class="p">(</span><span class="n">minimal_prime</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">minimal_prime</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fill</span><span class="p">(</span><span class="n">moebius</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">moebius</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">moebius</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">prime_list</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prime_list</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">80000</span><span class="p">);</span> <span class="c1">// Approximate prime count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">LIMIT</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">minimal_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prime_list</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">moebius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">prime</span> <span class="p">:</span> <span class="n">prime_list</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">prime</span> <span class="o">&gt;</span> <span class="n">minimal_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">||</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">prime</span> <span class="o">&gt;=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="p">(</span><span class="n">LIMIT</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">          <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">minimal_prime</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">prime</span><span class="p">]</span> <span class="o">=</span> <span class="n">prime</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">moebius</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">prime</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prime</span> <span class="o">==</span> <span class="n">minimal_prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">-</span><span class="n">moebius</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This linear sieve implementation efficiently computes both the smallest prime factor and Möbius function values for all numbers up to the limit, enabling fast factorization and coprimality calculations.</p>
+<hr>
+<h2 id="4-a-stratified-algorithmic-strategy">4. A stratified algorithmic strategy
+</h2><p>The algorithm adopts a multi-phase approach designed to solve the problem as efficiently as possible.</p>
+<h3 id="phase-0-preprocessing-and-data-structures">Phase 0: Preprocessing and data structures
+</h3><p>The first step consists of preparing the data structures that will support subsequent phases:</p>
+<ol>
+<li><strong>Linear sieve execution</strong>: Computing Möbius values and prime factorizations.</li>
+<li><strong>Frequency and divisibility counting</strong>: Building frequency arrays for efficient lookups.</li>
+<li><strong>Value compression</strong>: Identifying unique values and storing their properties.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ValueCompressor</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="nc">CompressedValue</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">original</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">compressed_id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">occurrence_indices</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">squarefree_factors</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">compression_map</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vector</span><span class="o">&lt;</span><span class="n">CompressedValue</span><span class="o">&gt;</span> <span class="n">compressed_data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">compress</span><span class="p">(</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">input_sequence</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compression_map</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compressed_data</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compression_map</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">input_sequence</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">input_sequence</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">input_sequence</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">      <span class="k">auto</span> <span class="p">[</span><span class="n">iter</span><span class="p">,</span> <span class="n">inserted</span><span class="p">]</span> <span class="o">=</span> <span class="n">compression_map</span><span class="p">.</span><span class="n">try_emplace</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">compressed_data</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">inserted</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compressed_data</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">          <span class="p">.</span><span class="n">original</span> <span class="o">=</span> <span class="n">value</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="p">.</span><span class="n">compressed_id</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">compressed_data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="p">.</span><span class="n">occurrence_indices</span> <span class="o">=</span> <span class="p">{</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)},</span> <span class="c1">// 1-indexed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="p">.</span><span class="n">squarefree_factors</span> <span class="o">=</span> <span class="n">NT_ENGINE</span><span class="p">.</span><span class="n">factorize_squarefree</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compressed_data</span><span class="p">[</span><span class="n">iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">].</span><span class="n">occurrence_indices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="phase-1-handling-unit-values">Phase 1: Handling unit values
+</h3><p>The value 1 is exceptional since $\gcd(1, k) = 1$ for any $k$. Its presence simplifies the search significantly:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">UnitValueStrategy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">static</span> <span class="k">auto</span> <span class="nf">execute</span><span class="p">(</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">unit_indices</span><span class="p">,</span> <span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MaybeSolution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size_t</span> <span class="n">unit_count</span> <span class="o">=</span> <span class="n">unit_indices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">unit_count</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Quadruple</span><span class="p">{</span><span class="n">unit_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">unit_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">unit_indices</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">unit_indices</span><span class="p">[</span><span class="mi">3</span><span class="p">]};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">unit_count</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="n">Quadruple</span><span class="p">{</span><span class="n">unit_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">unit_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">unit_indices</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)};</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">nullopt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">unit_count</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">non_units</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">non_units</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">non_units</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">non_units</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Quadruple</span><span class="p">{</span><span class="n">unit_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">non_units</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">unit_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">non_units</span><span class="p">[</span><span class="mi">1</span><span class="p">]};</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nullopt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="phase-2-exploiting-duplicate-values">Phase 2: Exploiting duplicate values
+</h3><p>If a value $v &gt; 1$ appears multiple times and has sufficient coprimes, the solution becomes straightforward:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Phase 2: Duplicate value exploitation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">id</span> <span class="o">&lt;</span> <span class="n">compressor</span><span class="p">.</span><span class="n">unique_count</span><span class="p">();</span> <span class="o">++</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">cached_occurrences</span><span class="p">[</span><span class="n">id</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">cached_original_values</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">coprime_candidates</span> <span class="o">=</span> <span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">id</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">coprime_candidates</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">partners</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">spec</span><span class="p">.</span><span class="n">element_count</span> <span class="o">&amp;&amp;</span> <span class="n">partners</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">gcd</span><span class="p">(</span><span class="n">cached_original_values</span><span class="p">[</span><span class="n">id</span><span class="p">],</span> <span class="n">spec</span><span class="p">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">partners</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">partners</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output_solution</span><span class="p">({</span><span class="n">cached_occurrences</span><span class="p">[</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">partners</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+</span></span><span class="line"><span class="cl">                        <span class="n">cached_occurrences</span><span class="p">[</span><span class="n">id</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">partners</span><span class="p">[</span><span class="mi">1</span><span class="p">]});</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="phase-3-single-unit-case">Phase 3: Single unit case
+</h3><p>When exactly one &lsquo;1&rsquo; exists in the array, it guarantees one coprime pair. The problem reduces to finding a second coprime pair among the remaining elements:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="nf">handle_single_unit_case</span><span class="p">(</span><span class="kt">int</span> <span class="n">unit_index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MaybeSolution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Find any coprime pair among non-unit values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">id</span> <span class="o">&lt;</span> <span class="n">compressor</span><span class="p">.</span><span class="n">unique_count</span><span class="p">();</span> <span class="o">++</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">cached_original_values</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">non_unit_coprimes</span> <span class="o">=</span> <span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Exclude the unit
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">non_unit_coprimes</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">first_index</span> <span class="o">=</span> <span class="n">cached_occurrences</span><span class="p">[</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">partner</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">partner</span> <span class="o">&lt;=</span> <span class="n">spec</span><span class="p">.</span><span class="n">element_count</span><span class="p">;</span> <span class="o">++</span><span class="n">partner</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">partner</span> <span class="o">==</span> <span class="n">unit_index</span> <span class="o">||</span> <span class="n">partner</span> <span class="o">==</span> <span class="n">first_index</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">gcd</span><span class="p">(</span><span class="n">cached_original_values</span><span class="p">[</span><span class="n">id</span><span class="p">],</span> <span class="n">spec</span><span class="p">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">partner</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">fourth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">fourth</span> <span class="o">&lt;=</span> <span class="n">spec</span><span class="p">.</span><span class="n">element_count</span><span class="p">;</span> <span class="o">++</span><span class="n">fourth</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">(</span><span class="n">fourth</span> <span class="o">!=</span> <span class="n">unit_index</span> <span class="o">&amp;&amp;</span> <span class="n">fourth</span> <span class="o">!=</span> <span class="n">first_index</span> <span class="o">&amp;&amp;</span> <span class="n">fourth</span> <span class="o">!=</span> <span class="n">partner</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Quadruple</span><span class="p">{</span><span class="n">first_index</span><span class="p">,</span> <span class="n">partner</span><span class="p">,</span> <span class="n">unit_index</span><span class="p">,</span> <span class="n">fourth</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">nullopt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="phase-4-degree-based-heuristic-search">Phase 4: Degree-based heuristic search
+</h3><p>When special cases fail, we resort to a more sophisticated search based on coprimality degrees.</p>
+<h4 id="41-prioritizing-leaf-vertices">4.1 Prioritizing leaf vertices
+</h4><p>Vertices with degree 1 (leaves in the graph) are critical: they have only one possible partner. If we don&rsquo;t pair them immediately, they might block future solutions:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Handle leaf vertices (degree 1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">value_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">value_id</span> <span class="o">&lt;</span> <span class="n">compressor</span><span class="p">.</span><span class="n">unique_count</span><span class="p">();</span> <span class="o">++</span><span class="n">value_id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">value_id</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">leaf_index</span> <span class="o">=</span> <span class="n">cached_occurrences</span><span class="p">[</span><span class="n">value_id</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">partner</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">partner</span> <span class="o">&lt;=</span> <span class="n">spec</span><span class="p">.</span><span class="n">element_count</span><span class="p">;</span> <span class="o">++</span><span class="n">partner</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">partner</span> <span class="o">!=</span> <span class="n">leaf_index</span> <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">gcd</span><span class="p">(</span><span class="n">cached_original_values</span><span class="p">[</span><span class="n">value_id</span><span class="p">],</span> <span class="n">spec</span><span class="p">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">partner</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// Temporarily remove both from consideration
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">analyzer</span><span class="o">-&gt;</span><span class="n">modify_element_presence</span><span class="p">(</span><span class="n">cached_squarefree_factors</span><span class="p">[</span><span class="n">value_id</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">analyzer</span><span class="o">-&gt;</span><span class="n">modify_element_presence</span><span class="p">(</span><span class="n">cached_squarefree_factors</span><span class="p">[</span><span class="n">partner_id</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="p">[</span><span class="n">third</span><span class="p">,</span> <span class="n">fourth</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_coprime_search</span><span class="p">(</span><span class="n">leaf_index</span><span class="p">,</span> <span class="n">partner</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">third</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="n">Quadruple</span><span class="p">{</span><span class="n">leaf_index</span><span class="p">,</span> <span class="n">partner</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">fourth</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Restore
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">analyzer</span><span class="o">-&gt;</span><span class="n">modify_element_presence</span><span class="p">(</span><span class="n">cached_squarefree_factors</span><span class="p">[</span><span class="n">value_id</span><span class="p">],</span> <span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">analyzer</span><span class="o">-&gt;</span><span class="n">modify_element_presence</span><span class="p">(</span><span class="n">cached_squarefree_factors</span><span class="p">[</span><span class="n">partner_id</span><span class="p">],</span> <span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Leaf can&#39;t form solution - no solution exists
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">nullopt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="42-bounded-search-with-degree-ordering">4.2 Bounded search with degree ordering
+</h4><p>For remaining elements, we sort by increasing degree and apply bounded search:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Build list of ALL indices sorted by degree of their VALUE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sorted_indices</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sorted_indices</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">spec</span><span class="p">.</span><span class="n">element_count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">value_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">value_id</span> <span class="o">&lt;</span> <span class="n">compressor</span><span class="p">.</span><span class="n">unique_count</span><span class="p">();</span> <span class="o">++</span><span class="n">value_id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">value_id</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">idx</span> <span class="p">:</span> <span class="n">cached_occurrences</span><span class="p">[</span><span class="n">value_id</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">sorted_indices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Sort by degree of the value, then by index
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sort</span><span class="p">(</span><span class="n">sorted_indices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">sorted_indices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">id_a</span> <span class="o">=</span> <span class="n">sequence_to_compressed_id</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">id_b</span> <span class="o">=</span> <span class="n">sequence_to_compressed_id</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">id_a</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">id_b</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">id_a</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">cached_coprime_degrees</span><span class="p">[</span><span class="n">id_b</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Try combinations with bounded search
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">SEARCH_WIDTH</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">primary_index</span> <span class="p">:</span> <span class="n">sorted_indices</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">candidates</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">candidates</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">SEARCH_WIDTH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">partner</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">partner</span> <span class="o">&lt;=</span> <span class="n">spec</span><span class="p">.</span><span class="n">element_count</span> <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">       <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">candidates</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&lt;</span> <span class="n">SEARCH_WIDTH</span><span class="p">;</span> <span class="o">++</span><span class="n">partner</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">partner</span> <span class="o">!=</span> <span class="n">primary_index</span> <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">gcd</span><span class="p">(</span><span class="n">spec</span><span class="p">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">primary_index</span><span class="p">],</span> <span class="n">spec</span><span class="p">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">partner</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">candidates</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">partner</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">secondary_index</span> <span class="p">:</span> <span class="n">candidates</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Try this pair and search for remaining coprime pair
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ... implementation details ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="5-modern-c-implementation-choices">5. Modern C++ implementation choices
+</h2><p>The implementation leverages several modern C++ features and idioms for improved performance and readability.</p>
+<h3 id="51-structured-bindings-and-auto-declarations">5.1 Structured bindings and auto declarations
+</h3><p>Modern C++ structured bindings enhance code readability:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="p">[</span><span class="n">iter</span><span class="p">,</span> <span class="n">inserted</span><span class="p">]</span> <span class="o">=</span> <span class="n">compression_map</span><span class="p">.</span><span class="n">try_emplace</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">compressed_data</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="p">[</span><span class="n">third</span><span class="p">,</span> <span class="n">fourth</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_coprime_search</span><span class="p">(</span><span class="n">leaf_index</span><span class="p">,</span> <span class="n">partner</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-stdspan-for-zero-copy-views">5.2 std::span For zero-copy views
+</h3><p>Using <code>std::span</code> (C++20) allows passing array views without copying:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">compress</span><span class="p">(</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">input_sequence</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Process without copying the input data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="53-designated-initializers">5.3 Designated initializers
+</h3><p>C++20 designated initializers improve struct initialization clarity:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">compressed_data</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="n">original</span> <span class="o">=</span> <span class="n">value</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="n">compressed_id</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">compressed_data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="n">occurrence_indices</span> <span class="o">=</span> <span class="p">{</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="n">squarefree_factors</span> <span class="o">=</span> <span class="n">NT_ENGINE</span><span class="p">.</span><span class="n">factorize_squarefree</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="54-constexpr-and-compile-time-optimization">5.4 Constexpr and compile-time optimization
+</h3><p>Using <code>constexpr</code> enables compile-time computation where possible:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">constexpr</span> <span class="n">size_t</span> <span class="n">LIMIT</span> <span class="o">=</span> <span class="mi">1000001</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">SEARCH_WIDTH</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="55-memory-management-and-cache-optimization">5.5 Memory management and cache optimization
+</h3><p>Strategic use of <code>reserve()</code> prevents vector reallocations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">prime_list</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">80000</span><span class="p">);</span> <span class="c1">// Approximate prime count for better cache locality
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">candidates</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">SEARCH_WIDTH</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="6-complexity-analysis">6. Complexity Analysis
+</h2><h3 id="61-time-complexity">6.1 Time complexity
+</h3><p>Analyzing each component:</p>
+<ol>
+<li><strong>Sieve Preprocessing</strong>: $O(m)$ using linear sieve</li>
+<li><strong>Square-free Divisor Computation</strong>: $O(U \times 2^{\omega(\text{max})})$ where $\omega(n)$ is the number of distinct primes</li>
+<li><strong>Divisibility Counting</strong>: $O(m \log m)$</li>
+<li><strong>Phases 1-3</strong>: $O(n)$ each</li>
+<li><strong>Phase 4</strong>: $O(n \times \min(n, 30)) = O(n \times 30)$ with bounded search</li>
+</ol>
+<p><strong>Total Complexity</strong>: $O(m \log m + n \times 30 + U \times 2^{\omega(\text{max})})$</p>
+<p>In practice, for the problem constraints ($m \leq 10^6$, $n \leq 2 \times 10^5$), the algorithm operates in near-linear time for most inputs.</p>
+<h3 id="62-space-complexity">6.2 Space complexity
+</h3><p>The main data structures require:</p>
+<ul>
+<li>Sieve: $O(m)$</li>
+<li>Square-free divisors: $O(U \times d(\text{max}))$</li>
+<li>Divisibility counts: $O(m)$</li>
+<li>Auxiliary structures: $O(n)$</li>
+</ul>
+<p><strong>Total Space</strong>: $O(m + n + U \times d(\text{max}))$</p>
+<hr>
+<h2 id="7-performance-considerations-and-optimizations">7. Performance considerations and optimizations
+</h2><h3 id="71-incremental-updates">7.1 Incremental updates
+</h3><p>Instead of recalculating degrees after each element &ldquo;removal,&rdquo; we update incrementally:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">modify_element_presence</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">squarefree_factors</span><span class="p">,</span> <span class="kt">int</span> <span class="n">delta</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">divisor</span> <span class="p">:</span> <span class="n">squarefree_factors</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">divisor_multiplicities</span><span class="p">[</span><span class="n">divisor</span><span class="p">]</span> <span class="o">+=</span> <span class="n">delta</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This reduces the cost of each update from $O(m)$ to $O(d(\text{value}))$, typically very small.</p>
+<h3 id="72-precomputation-and-caching">7.2 Precomputation and caching
+</h3><p>All values depending only on unique values are computed once:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cached_coprime_degrees</span><span class="p">;</span>     <span class="c1">// Precomputed coprime degrees per unique value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cached_original_values</span><span class="p">;</span>     <span class="c1">// Original values per compressed ID
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">cached_occurrences</span><span class="p">;</span> <span class="c1">// Occurrence indices per compressed ID
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="73-early-termination">7.3 Early termination
+</h3><p>Each phase terminates as soon as it finds a solution, avoiding unnecessary computations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">handle_unit_values</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">exploit_duplicates</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">handle_single_unit</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">process_leaf_vertices</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">general_search</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;0</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>  <span class="c1">// No solution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="8-conclusion">8. Conclusion
+</h2><p>The resolution of the &ldquo;Sea, You &amp; copriMe&rdquo; problem constitutes an excellent example of how the synergistic application of concepts from different areas of mathematics and computer science can lead to efficient solutions for computationally challenging problems. The pillars of this solution have been:</p>
+<ol>
+<li>
+<p><strong>Problem Abstraction</strong>: Translating the problem into a graph model provided the conceptual framework for reasoning about its structure.</p>
+</li>
+<li>
+<p><strong>Power of Number Theory</strong>: The employment of the Möbius function and inclusion-exclusion principle proved fundamental for performing otherwise prohibitive calculations.</p>
+</li>
+<li>
+<p><strong>Stratified Algorithm Design</strong>: Prioritized handling of special and simple cases allowed avoiding complex computations for a vast class of inputs.</p>
+</li>
+<li>
+<p><strong>Effective Heuristics</strong>: The use of heuristics, such as priority to low-degree vertices and bounded search, drastically reduced the search space while maintaining solution correctness.</p>
+</li>
+<li>
+<p><strong>Modern C++ Implementation</strong>: Leveraging modern C++ features like structured bindings, <code>std::span</code>, and designated initializers improved both performance and code readability.</p>
+</li>
+</ol>
+<p>This approach demonstrates that, even in the modern context, mastery of classical algorithms and fundamental mathematical structures remains an irreplaceable and highly powerful tool for software engineering and complex problem solving. The combination of theoretical insights with practical implementation considerations showcases the elegance that can be achieved when mathematical rigor meets engineering pragmatism.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/competitive-programming/">Competitive-Programming</a>
+        
+            <a href="/tags/coding/">Coding</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/posts/the-central-limit-theorem/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">The Central Limit Theorem</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 LCS.Developer
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
