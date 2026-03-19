@@ -531,7 +531,7 @@ These are purely syntactic conveniences. The mathematical content of the algorit
 - the Möbius sum is used twice, once for the full graph and once for the active subset;
 - `reach[i]` encodes the degree bound $\deg(p_j) \le K - \deg(p_i)$.
 
-This is one of the reasons I like this version of the solution more than the original one: the implementation mirrors the proof very closely.
+This is one of the reasons I like this version of the solution more than the original one: the implementation mirrors the proof very closely. You can find the complete solution here: [problem_H.cpp](https://gist.github.com/XtremeXSPC/a1ff88dc70f744c2170373979508e3a1)
 
 ## Conclusion
 
