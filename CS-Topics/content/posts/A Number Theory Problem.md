@@ -37,7 +37,8 @@ editPost:
   Text: Suggest Changes
   appendFilePath: true
 ---
-# Finding coprime quadruples:
+
+# Finding coprime quadruples
 
 ## An algorithmic analysis of "Sea, you & copriMe"
 
@@ -60,11 +61,13 @@ $$
 $$
 
 At first glance this looks like a brute-force search over quadruples, which would be completely infeasible under the official constraints:
+
 - $4 \le n \le 2 \cdot 10^5$
 - $1 \le a_i \le m \le 10^6$
 - over all test cases, $\sum n \le 2 \cdot 10^5$ and $\sum m \le 10^6$
 
 The key to a clean solution is to stop thinking about four indices directly. The problem is better understood as a question about matchings in a graph whose edges are defined by coprimality. Once that reformulation is in place, number theory provides the right counting tool: Möbius inversion. The final implementation is therefore not a collection of ad hoc cases, but a structured combination of:
+
 - a graph-theoretic reduction;
 - an exact counting formula for coprime neighbors;
 - an efficient search over admissible first edges;
@@ -75,6 +78,7 @@ This article presents that improved solution in a formal and implementation-awar
 ## Problem statement
 
 For each test case we are given an array $a = (a_1, a_2, \dots, a_n)$. We must output either:
+
 - four distinct indices $p, q, r, s$ such that both pairs are coprime;
 - or `0` if no such quadruple exists.
 
@@ -83,6 +87,7 @@ Any valid quadruple is acceptable.
 ## From four indices to two edges
 
 Define the **coprimality graph** $G = (V, E)$ as follows:
+
 - $V = \{1, 2, \dots, n\}$;
 - $(i, j) \in E$ if and only if $i \ne j$ and $\gcd(a_i, a_j) = 1$.
 
@@ -214,6 +219,7 @@ The correction term is needed only for the value $1$, because the formula counts
 ### Computing the Möbius function
 
 The implementation performs one global linear sieve up to $10^6$. It stores:
+
 - `g_mu[x]`, the Mobius value of $x$;
 - `g_spf[x]`, the smallest prime factor of $x$.
 
@@ -340,6 +346,7 @@ so that each vertex enters and leaves the active window exactly once.
 ### Step 4: Use counting first, GCD later
 
 For each $i$:
+
 1. compute how many active vertices are coprime with $p_i$ using the Mobius sum;
 2. if the answer is zero, no admissible partner exists for this $i$;
 3. if the answer is positive, linearly scan the interval
@@ -398,6 +405,7 @@ $$
 is a correct answer.
 
 This stage is also efficient:
+
 - the Mobius test is applied to each remaining index only once;
 - the linear scan is executed only for the first index whose residual degree is positive;
 - therefore reconstruction is linear after divisor preprocessing.
@@ -479,6 +487,7 @@ This cost is paid once for the entire input.
 ### Per test case
 
 Let $\tau(x)$ denote the number of divisors of $x$.
+
 - Frequency table and multiples transform: $O(m \log m)$
 - Divisor generation and degree evaluation:
   $O\!\left(\sum_{i=1}^{n}\tau(a_i)\right)$
@@ -509,12 +518,14 @@ The memory usage is dominated by a handful of arrays of size $m+1$ together with
 ## Notes on the C++ Implementation
 
 The final code uses the aliases and loop macros from my template library:
+
 - `I32`, `I64` for fixed-width integers;
 - `VecI32` and `Vec2D<I32>` for vectors;
 - `FOR(...)` for concise loop syntax;
 - `as<T>(x)` for explicit casts.
 
 These are purely syntactic conveniences. The mathematical content of the algorithm is unchanged:
+
 - `mult_cnt` implements the global multiples counts $C[d]$;
 - `active_mult` implements the dynamic counts on the current search window;
 - the Mobius sum is used twice, once for the full graph and once for the active subset;
@@ -531,6 +542,7 @@ $$
 $$
 
 Once the coprimality graph is viewed through that lens, Möbius inversion becomes the natural counting tool, and the rest of the algorithm follows from a clean sequence of reductions:
+
 1. count coprime neighbors efficiently;
 2. search exhaustively among degree-feasible first edges;
 3. reconstruct the remaining edge.
