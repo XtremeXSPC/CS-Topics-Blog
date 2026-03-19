@@ -220,7 +220,7 @@ The correction term is needed only for the value $1$, because the formula counts
 
 The implementation performs one global linear sieve up to $10^6$. It stores:
 
-- `g_mu[x]`, the Mobius value of $x$;
+- `g_mu[x]`, the Möbius value of $x$;
 - `g_spf[x]`, the smallest prime factor of $x$.
 
 The sieve is executed once before processing the test cases, so its total cost is $O(10^6)$.
@@ -318,19 +318,19 @@ $$
 A_i = \{p_{i+1}, \dots, p_{R(i)}\}.
 $$
 
-For each divisor $d$, maintain
+For each divisor $d$, maintain the quantity
 
 $$
-\text{active\_mult}[d] = \bigl|\{x \in A_i : d \mid a_x\}\bigr|.
+M_i(d) = \bigl|\{x \in A_i : d \mid a_x\}\bigr|.
 $$
 
 Then the number of vertices in the active window that are coprime with $a_{p_i}$ is
 
 $$
-\sum_{d \mid a_{p_i}} \mu(d)\,\text{active\_mult}[d].
+\sum_{d \mid a_{p_i}} \mu(d)\, M_i(d).
 $$
 
-This is the same Mobius formula as before, but applied to a dynamic subset rather than to the entire array.
+This is the same Möbius formula as before, but applied to a dynamic subset rather than to the entire array.
 
 The implementation uses the helper lambda:
 
@@ -347,7 +347,7 @@ so that each vertex enters and leaves the active window exactly once.
 
 For each $i$:
 
-1. compute how many active vertices are coprime with $p_i$ using the Mobius sum;
+1. compute how many active vertices are coprime with $p_i$ using the Möbius sum;
 2. if the answer is zero, no admissible partner exists for this $i$;
 3. if the answer is positive, linearly scan the interval
    $\{p_{i+1}, \dots, p_{R(i)}\}$ until a concrete partner is found by `gcd`.
@@ -363,7 +363,7 @@ initialize active window for i = 0
 
 for i = 0 .. n-1
     if A_i is non-empty
-        count coprimes of p_i inside A_i using Mobius
+        count coprimes of p_i inside A_i using Möbius
         if count > 0
             scan A_i until a gcd-1 partner is found
             output this pair as the first edge
@@ -381,19 +381,19 @@ $$
 \deg(u) + \deg(v) \le K,
 $$
 
-which implies $j \le R(i)$. Therefore $v$ belongs to the active window $A_i$. Since $\gcd(a_u, a_v)=1$, the Mobius count on $A_i$ is strictly positive, so the algorithm must detect some admissible partner while processing $i$.
+which implies $j \le R(i)$. Therefore $v$ belongs to the active window $A_i$. Since $\gcd(a_u, a_v)=1$, the Möbius count on $A_i$ is strictly positive, so the algorithm must detect some admissible partner while processing $i$.
 
 Consequently, if the search phase fails, then no valid first edge exists and the answer is necessarily `0`.
 
 ## Reconstructing the second edge
 
-Once the first edge $(u, v)$ has been selected, we remove its contribution from the global divisibility counts. In the code this is done by copying `mult_cnt` into `rem_mult` and decrementing all divisors of $a_u$ and $a_v$.
+Once the first edge $(u, v)$ has been selected, we remove its contribution from the global divisibility counts. Let $C_{\mathrm{rem}}[d]$ denote the number of remaining elements divisible by $d$. In the code this is done by copying `mult_cnt` into `rem_mult` and decrementing all divisors of $a_u$ and $a_v$.
 
 For every remaining index $i$, we compute its degree in the residual graph:
 
 $$
-\deg_{\text{rem}}(i) =
-\sum_{d \mid a_i}\mu(d)\,\text{rem\_mult}[d] - [a_i = 1].
+\deg_{\mathrm{rem}}(i) =
+\sum_{d \mid a_i}\mu(d)\, C_{\mathrm{rem}}[d] - [a_i = 1].
 $$
 
 If $\deg_{\text{rem}}(i) > 0$, then there exists at least one remaining index $j$ such that $\gcd(a_i, a_j)=1$. A direct scan recovers one such $j$, and the quadruple
@@ -406,7 +406,7 @@ is a correct answer.
 
 This stage is also efficient:
 
-- the Mobius test is applied to each remaining index only once;
+- the Möbius test is applied to each remaining index only once;
 - the linear scan is executed only for the first index whose residual degree is positive;
 - therefore reconstruction is linear after divisor preprocessing.
 
@@ -527,8 +527,8 @@ The final code uses the aliases and loop macros from my template library:
 These are purely syntactic conveniences. The mathematical content of the algorithm is unchanged:
 
 - `mult_cnt` implements the global multiples counts $C[d]$;
-- `active_mult` implements the dynamic counts on the current search window;
-- the Mobius sum is used twice, once for the full graph and once for the active subset;
+- `active_mult` implements the dynamic counts denoted in the article by $M_i(d)$;
+- the Möbius sum is used twice, once for the full graph and once for the active subset;
 - `reach[i]` encodes the degree bound $\deg(p_j) \le K - \deg(p_i)$.
 
 This is one of the reasons I like this version of the solution more than the original one: the implementation mirrors the proof very closely.
