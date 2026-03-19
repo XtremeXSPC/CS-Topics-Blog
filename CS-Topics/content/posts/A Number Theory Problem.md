@@ -45,500 +45,494 @@ editPost:
 
 ## Abstract
 
-This article presents a comprehensive algorithmic analysis and solution to the problem of finding quadruples of distinct indices in an integer array that form two coprime pairs. While originating from competitive programming, this problem offers an excellent opportunity to explore the intersections between number theory, graph theory, and efficient algorithm design. I will demonstrate how the combination of concepts such as the Sieve of Eratosthenes, the Möbius function, the inclusion-exclusion principle, and heuristic search strategies enables the development of a robust and elegant solution. The final implementation demonstrates how deep understanding of underlying mathematical properties is fundamental to achieving decisive algorithmic optimizations.
+This article presents a comprehensive algorithmic analysis and solution to the problem of finding quadruples of distinct indices in an integer array that form two coprime pairs. While originating from competitive programming, this problem offers an excellent opportunity to explore the intersections between number theory, graph theory, and efficient algorithm design. I will demonstrate how the combination of concepts such as the Sieve of Eratosthenes, the Möbius function, the inclusion-exclusion principle, enables the development of a robust and elegant solution. The final implementation demonstrates how deep understanding of underlying mathematical properties is fundamental to achieving decisive algorithmic optimizations.
 
 ---
 
-## 1. Problem Formulation
+## Introduction
 
-In the realm of algorithmic problem solving, certain challenges distinguish themselves through an apparently simple formulation that conceals considerable computational complexity. The problem under examination, titled "Sea, You & copriMe," belongs entirely to this category. Its formal definition is as follows:
+The original Codeforces problem "Sea, You & copriMe" asks for four distinct indices $p, q, r, s$ such that
 
-**Input:**
+$$
+\gcd(a_p, a_q) = 1
+\qquad\text{and}\qquad
+\gcd(a_r, a_s) = 1.
+$$
 
-- An array $a$ of $n$ integers, where $4 \leq n \leq 200,000$
-- Each element $a_i$ of the array is within the interval $[1, m]$, where $1 \leq m \leq 1,000,000$
+At first glance this looks like a brute-force search over quadruples, which would be completely infeasible under the official constraints:
+- $4 \le n \le 2 \cdot 10^5$
+- $1 \le a_i \le m \le 10^6$
+- over all test cases, $\sum n \le 2 \cdot 10^5$ and $\sum m \le 10^6$
 
-**Output:**
+The key to a clean solution is to stop thinking about four indices directly. The problem is better understood as a question about matchings in a graph whose edges are defined by coprimality. Once that reformulation is in place, number theory provides the right counting tool: Möbius inversion. The final implementation is therefore not a collection of ad hoc cases, but a structured combination of:
+- a graph-theoretic reduction;
+- an exact counting formula for coprime neighbors;
+- an efficient search over admissible first edges;
+- a linear reconstruction of the second edge.
 
-- Four distinct indices $(p, q, r, s)$ such that the greatest common divisor of the corresponding element pairs is unity:
-  - $\gcd(a_p, a_q) = 1$
-  - $\gcd(a_r, a_s) = 1$
-- If no such quadruple exists, the output should be `0`
+This article presents that improved solution in a formal and implementation-aware way.
 
-The primary challenge lies in the dimensional constraints of the input. A brute force approach examining all possible combinations of four indices would result in $O(n^4)$ time complexity, a prohibitive value for $n$ on the order of $2 \times 10^5$. It is therefore imperative to develop a strategy that exploits the intrinsic mathematical structure of the problem to drastically reduce the solution space to be explored.
+## Problem statement
 
----
+For each test case we are given an array $a = (a_1, a_2, \dots, a_n)$. We must output either:
+- four distinct indices $p, q, r, s$ such that both pairs are coprime;
+- or `0` if no such quadruple exists.
 
-## 2. The Coprimality Graph: a structural perspective
+Any valid quadruple is acceptable.
 
-A fundamental initial insight for approaching this problem consists of reformulating it in terms of graph theory. We can model the coprimality relationships between array elements through an undirected graph $G = (V, E)$, defined as follows:
+## From four indices to two edges
 
-- The vertex set $V = {1, 2, \ldots, n}$ represents the indices of array $a$
-- An edge $(i, j)$ belongs to the edge set $E$ if and only if the corresponding elements are coprime, i.e., $\gcd(a_i, a_j) = 1$
+Define the **coprimality graph** $G = (V, E)$ as follows:
+- $V = \{1, 2, \dots, n\}$;
+- $(i, j) \in E$ if and only if $i \ne j$ and $\gcd(a_i, a_j) = 1$.
 
-In this new perspective, the problem translates to finding two edges in $G$ that share no vertices, essentially a **matching** of size two. This abstraction not only clarifies the problem structure but also opens the way to various algorithmic strategies based on graph properties.
+Under this definition, the problem becomes:
 
-We define the **coprimality degree** of a vertex $i$ as the number of edges incident to it, which corresponds to the number of elements in the array that are coprime with $a_i$:
+> Find a matching of size $2$ in $G$.
 
-$$\deg(i) = |{j \in V, j \neq i \mid \gcd(a_i, a_j) = 1}|$$
+That is, we need two disjoint edges. This is much simpler than general maximum matching: we do not need Blossom or any heavy graph algorithm, because the target size is fixed and very small.
 
-Elements with low coprimality degree represent "scarce resources" in our graph. For example, a vertex with degree 1 (a "leaf vertex") has only one potential partner to form a coprime pair. Prioritized management of such vertices will prove to be an effective heuristic strategy.
+For each vertex $i$, let
 
----
+$$
+\deg(i) = \bigl|\{j \ne i : \gcd(a_i, a_j) = 1\}\bigr|
+$$
 
-## 3. Fundamental tools from Number Theory
+be its degree in the coprimality graph, and let
 
-To navigate efficiently in the coprimality graph, particularly to calculate vertex degrees, it is necessary to resort to advanced tools from number theory.
+$$
+K = |E| = \frac{1}{2}\sum_{i=1}^{n}\deg(i)
+$$
 
-### 3.1 The inclusion-exclusion principle and the Möbius function
+be the total number of coprime pairs in the array. The entire strategy will revolve around the quantities $\deg(i)$ and $K$.
 
-The efficient calculation of the number of elements in a set that are coprime with a given integer $x$ is a classic problem. The most elegant solution employs the inclusion-exclusion principle, formalized through the **Möbius function**, $\mu(n)$. This function is defined for every positive integer $n$ as follows:
+## Which first edge is good enough?
 
-$$\mu(n) = \begin{cases} 1 & \text{if } n \text{ is square-free with an even number of distinct prime factors} \newline -1 & \text{if } n \text{ is square-free with an odd number of distinct prime factors} \newline 0 & \text{if } n \text{ has a squared prime factor} \end{cases}$$
+Suppose that $(u, v)$ is a coprime pair and we choose it as the first edge of the matching. After removing the vertices $u$ and $v$, every edge incident to either endpoint disappears. The number of deleted edges is exactly
 
-An integer is called "square-free" if it is not divisible by any perfect square other than 1.
+$$
+\deg(u) + \deg(v) - 1,
+$$
 
-The theorem linking the Möbius function to our problem states that, given an integer $x$ and a multiset $S$ of integers, the number of elements in $S$ that are coprime with $x$ is given by:
+because the edge $(u, v)$ itself is counted in both degrees. Therefore the remaining graph still contains an edge if and only if
 
-$$\text{countCoprime}(x, S) = \sum_{d \mid x, \mu(d) \neq 0} \mu(d) \cdot |{s \in S : d \mid s}|$$
+$$
+K - \bigl(\deg(u) + \deg(v) - 1\bigr) > 0.
+$$
 
-This formula allows us to calculate the coprimality degree of an element without having to test every individual pair. Instead of $O(n)$ gcd operations, we can perform the calculation based on the divisors of $x$.
+Since all terms are integers, this is equivalent to
 
-### 3.2 Concrete example
+$$
+\deg(u) + \deg(v) \le K.
+$$
 
-Suppose we want to calculate the number of elements coprime with $x = 6$ in a multiset $S$ where the counts of multiples are already known: $|S_1|=10, |S_2|=5, |S_3|=3, |S_6|=1$.
+This gives an exact criterion.
 
-The square-free divisors of 6 are ${1, 2, 3, 6}$.
+**Proposition.**
+A valid answer exists if and only if there is an edge $(u, v)$ such that
 
-The Möbius function values are: $\mu(1)=1, \mu(2)=-1, \mu(3)=-1, \mu(6)=1$.
+$$
+\gcd(a_u, a_v) = 1
+\qquad\text{and}\qquad
+\deg(u) + \deg(v) \le K.
+$$
 
-Applying the formula:
+**Why this matters.**
+The original four-index problem is reduced to the search for a single edge satisfying a degree bound. Once such an edge is found, any remaining edge in the residual graph will complete the answer.
 
-$$\text{countCoprime}(6, S) = \mu(1)|S_1| + \mu(2)|S_2| + \mu(3)|S_3| + \mu(6)|S_6|$$
+### A small example
 
-$$\text{countCoprime}(6, S) = (1 \cdot 10) + (-1 \cdot 5) + (-1 \cdot 3) + (1 \cdot 1) = 10 - 5 - 3 + 1 = 3$$
+Consider the sample array
 
-### 3.3 Implementation of the linear sieve
+$$
+[4, 7, 9, 15].
+$$
 
-To use the previous formula, we need the values of the Möbius function and the prime factors of integers up to $m$. A **linear sieve** is the ideal tool for this precomputation in $O(m)$ time.
+Its coprime degrees are
+
+$$
+\deg(4)=3,\quad \deg(7)=3,\quad \deg(9)=2,\quad \deg(15)=2,
+$$
+
+so
+
+$$
+K = \frac{3+3+2+2}{2}=5.
+$$
+
+The pair $(9, 4)$ is coprime and satisfies
+
+$$
+\deg(9)+\deg(4)=2+3=5 \le K.
+$$
+
+Hence it is a valid first edge. After removing the corresponding vertices, the edge $(7, 15)$ still remains, so the instance is solvable.
+
+## Counting degrees with Möbius inversion
+
+The graph reformulation is only useful if degrees can be computed efficiently. Checking all $O(n^2)$ pairs is impossible, so we count coprime neighbors indirectly.
+
+For every integer $d \in [1, m]$, define
+
+$$
+C[d] = \bigl|\{i : d \mid a_i\}\bigr|,
+$$
+
+the number of array elements divisible by $d$. Now recall the classical identity
+
+$$
+\sum_{d \mid g}\mu(d) =
+\begin{cases}
+1 & \text{if } g = 1, \\
+0 & \text{if } g > 1,
+\end{cases}
+$$
+
+where $\mu$ is the Möbius function. Applying it with $g = \gcd(x, y)$ yields
+
+$$
+\sum_{d \mid \gcd(x, y)} \mu(d) =
+\begin{cases}
+1 & \text{if } \gcd(x, y) = 1, \\
+0 & \text{otherwise.}
+\end{cases}
+$$
+
+Summing over all array elements gives the number of values coprime with a fixed $x$:
+
+$$
+\sum_{d \mid x} \mu(d)\, C[d].
+$$
+Hence, for every index $i$,
+
+$$
+\deg(i) = \sum_{d \mid a_i} \mu(d)\, C[d] - [a_i = 1].
+$$
+
+The correction term is needed only for the value $1$, because the formula counts the index itself when $\gcd(1,1)=1$.
+
+### Computing the Möbius function
+
+The implementation performs one global linear sieve up to $10^6$. It stores:
+- `g_mu[x]`, the Mobius value of $x$;
+- `g_spf[x]`, the smallest prime factor of $x$.
+
+The sieve is executed once before processing the test cases, so its total cost is $O(10^6)$.
+
+### Computing the multiples counts
+
+The array `mult_cnt` in the implementation corresponds exactly to the function $C[d]$. It is built by the standard divisor transform:
+
+$$
+C[d] = \sum_{k \ge 1} \text{freq}[kd].
+$$
+
+Operationally:
+
+```text
+for d = 1 .. m
+    for x = d, 2d, 3d, ... <= m
+        C[d] += freq[x]
+```
+
+This takes
+
+$$
+O\!\left(\sum_{d=1}^{m}\frac{m}{d}\right) = O(m \log m).
+$$
+
+### Enumerating divisors
+
+For each value $a_i$, the implementation uses `g_spf` to factor it and then builds the full list of divisors. This may look slightly wasteful because non-square-free divisors have Möbius value $0$, but for $a_i \le 10^6$ the number of divisors is small enough that the approach remains efficient and very simple to implement.
+
+This is precisely what the degree computation loop evaluates:
 
 ```cpp
-struct NumberTheoryEngine {
-  static constexpr size_t LIMIT = 1000001;
-  array<int, LIMIT> minimal_prime;
-  array<int, LIMIT> moebius;
+FOR(i, n) {
+  divisors[i] = build_divisors(a[i]);
+  I32 d = 0;
+  for (const I32 div : divisors[i]) d += g_mu[div] * mult_cnt[div];
+  if (a[i] == 1) --d;
+  deg[i] = d;
+  total_edges2 += d;
+}
+```
 
-  NumberTheoryEngine() {
-    iota(minimal_prime.begin(), minimal_prime.end(), 0);
-    fill(moebius.begin(), moebius.end(), 0);
-    moebius[1] = 1;
+Once all degrees are known, we obtain
 
-    vector<int> prime_list;
-    prime_list.reserve(80000); // Approximate prime count
+$$
+K = \frac{1}{2}\sum_i \deg(i).
+$$
 
-    for (size_t i = 2; i < LIMIT; ++i) {
-      if (minimal_prime[i] == static_cast<int>(i)) {
-        prime_list.push_back(i);
-        moebius[i] = -1;
-      }
+If $K = 0$, then the graph has no edge at all and the answer is immediately `0`.
 
-      for (int prime : prime_list) {
-        if (prime > minimal_prime[i] || 
-            static_cast<ll>(i) * prime >= static_cast<ll>(LIMIT))
-          break;
-        minimal_prime[i * prime] = prime;
-        moebius[i * prime] = (prime == minimal_prime[i]) ? 0 : -moebius[i];
-      }
-    }
-  }
+## Searching for the first edge
+
+We now know exactly what we need: an edge $(u, v)$ such that
+
+$$
+\deg(u) + \deg(v) \le K.
+$$
+
+The challenge is to search for such an edge without testing too many pairs.
+
+### Step 1: Sort vertices by degree
+
+Let
+
+$$
+p_0, p_1, \dots, p_{n-1}
+$$
+
+be the indices sorted by nondecreasing degree. For a fixed position $i$, define
+
+$$
+R(i) = \max \{j : j > i \text{ and } \deg(p_j) \le K - \deg(p_i)\},
+$$
+
+with the convention that $R(i) < i+1$ when the set is empty. Then every admissible partner of $p_i$ must lie in the interval
+
+$$
+\{p_{i+1}, p_{i+2}, \dots, p_{R(i)}\}.
+$$
+
+In the code, this boundary is stored in the array `reach`.
+
+### Step 2: Observe that the windows shrink monotonically
+
+Because the degrees are sorted, $\deg(p_i)$ is nondecreasing, so the bound $K - \deg(p_i)$ is non-increasing. Therefore the sequence $R(i)$ is also non-increasing.
+
+This is the crucial structural fact that turns the search into a sliding-window problem: as $i$ increases, the set of admissible partners only shrinks.
+
+### Step 3: Maintain divisibility counts on the active window
+
+For the current vertex $p_i$, define the active window
+
+$$
+A_i = \{p_{i+1}, \dots, p_{R(i)}\}.
+$$
+
+For each divisor $d$, maintain
+
+$$
+\text{active\_mult}[d] = \bigl|\{x \in A_i : d \mid a_x\}\bigr|.
+$$
+
+Then the number of vertices in the active window that are coprime with $a_{p_i}$ is
+
+$$
+\sum_{d \mid a_{p_i}} \mu(d)\,\text{active\_mult}[d].
+$$
+
+This is the same Mobius formula as before, but applied to a dynamic subset rather than to the entire array.
+
+The implementation uses the helper lambda:
+
+```cpp
+auto modify_pos = [&](const I32 pos, const I32 delta) {
+  const I32 id = order[pos];
+  for (const I32 div : divisors[id]) active_mult[div] += delta;
 };
 ```
 
-This linear sieve implementation efficiently computes both the smallest prime factor and Möbius function values for all numbers up to the limit, enabling fast factorization and coprimality calculations.
+so that each vertex enters and leaves the active window exactly once.
 
----
+### Step 4: Use counting first, GCD later
 
-## 4. A stratified algorithmic strategy
+For each $i$:
+1. compute how many active vertices are coprime with $p_i$ using the Mobius sum;
+2. if the answer is zero, no admissible partner exists for this $i$;
+3. if the answer is positive, linearly scan the interval
+   $\{p_{i+1}, \dots, p_{R(i)}\}$ until a concrete partner is found by `gcd`.
 
-The algorithm adopts a multi-phase approach designed to solve the problem as efficiently as possible.
+The important point is that the expensive linear scan is performed at most once: the first time the Möbius count is positive, the algorithm immediately finds a valid first edge and stops.
 
-### Phase 0: Preprocessing and data structures
+In pseudocode, the search is:
 
-The first step consists of preparing the data structures that will support subsequent phases:
+```text
+sort indices by degree
+compute R(i) for every i
+initialize active window for i = 0
 
-1. **Linear sieve execution**: Computing Möbius values and prime factorizations.
-2. **Frequency and divisibility counting**: Building frequency arrays for efficient lookups.
-3. **Value compression**: Identifying unique values and storing their properties.
-
-```cpp
-class ValueCompressor {
-public:
-  struct CompressedValue {
-    int original;
-    int compressed_id;
-    vector<int> occurrence_indices;
-    vector<int> squarefree_factors;
-  };
-
-private:
-  unordered_map<int, size_t> compression_map;
-  vector<CompressedValue> compressed_data;
-
-public:
-  void compress(span<const int> input_sequence) {
-    compression_map.clear();
-    compressed_data.clear();
-    compression_map.reserve(input_sequence.size());
-
-    for (size_t idx = 0; idx < input_sequence.size(); ++idx) {
-      int value = input_sequence[idx];
-      
-      auto [iter, inserted] = compression_map.try_emplace(value, compressed_data.size());
-      if (inserted) {
-        compressed_data.push_back({
-          .original = value,
-          .compressed_id = static_cast<int>(compressed_data.size() - 1),
-          .occurrence_indices = {static_cast<int>(idx + 1)}, // 1-indexed
-          .squarefree_factors = NT_ENGINE.factorize_squarefree(value)
-        });
-      } else {
-        compressed_data[iter->second].occurrence_indices.push_back(static_cast<int>(idx + 1));
-      }
-    }
-  }
-};
+for i = 0 .. n-1
+    if A_i is non-empty
+        count coprimes of p_i inside A_i using Mobius
+        if count > 0
+            scan A_i until a gcd-1 partner is found
+            output this pair as the first edge
+            stop
+    slide the window to A_{i+1}
 ```
 
-### Phase 1: Handling unit values
-
-The value 1 is exceptional since $\gcd(1, k) = 1$ for any $k$. Its presence simplifies the search significantly:
-
-```cpp
-struct UnitValueStrategy {
-  static auto execute(span<const int> unit_indices, span<const int> sequence) -> MaybeSolution {
-    size_t unit_count = unit_indices.size();
-
-    if (unit_count >= 4) {
-      return Quadruple{unit_indices[0], unit_indices[1], unit_indices[2], unit_indices[3]};
-    }
-
-    if (unit_count == 3) {
-      for (size_t i = 1; i < sequence.size(); ++i) {
-        if (sequence[i] != 1) {
-          return Quadruple{unit_indices[0], unit_indices[1], unit_indices[2], static_cast<int>(i)};
-        }
-      }
-      return nullopt;
-    }
-
-    if (unit_count == 2) {
-      vector<int> non_units;
-      for (size_t i = 1; i < sequence.size() && non_units.size() < 2; ++i) {
-        if (sequence[i] != 1) {
-          non_units.push_back(static_cast<int>(i));
-        }
-      }
-      if (non_units.size() >= 2) {
-        return Quadruple{unit_indices[0], non_units[0], unit_indices[1], non_units[1]};
-      }
-    }
-
-    return nullopt;
-  }
-};
-```
-
-### Phase 2: Exploiting duplicate values
-
-If a value $v > 1$ appears multiple times and has sufficient coprimes, the solution becomes straightforward:
-
-```cpp
-// Phase 2: Duplicate value exploitation
-for (size_t id = 0; id < compressor.unique_count(); ++id) {
-  if (cached_occurrences[id].size() >= 2 && cached_original_values[id] != 1) {
-    int coprime_candidates = cached_coprime_degrees[id];
-
-    if (coprime_candidates >= 2) {
-      vector<int> partners;
-      for (int i = 1; i <= spec.element_count && partners.size() < 2; ++i) {
-        if (gcd(cached_original_values[id], spec.sequence[i]) == 1) {
-          partners.push_back(i);
-        }
-      }
-
-      if (partners.size() >= 2) {
-        output_solution({cached_occurrences[id][0], partners[0], 
-                        cached_occurrences[id][1], partners[1]});
-        return;
-      }
-    }
-  }
-}
-```
-
-### Phase 3: Single unit case
-
-When exactly one '1' exists in the array, it guarantees one coprime pair. The problem reduces to finding a second coprime pair among the remaining elements:
-
-```cpp
-auto handle_single_unit_case(int unit_index) -> MaybeSolution {
-  // Find any coprime pair among non-unit values
-  for (size_t id = 0; id < compressor.unique_count(); ++id) {
-    if (cached_original_values[id] == 1) continue;
-
-    int non_unit_coprimes = cached_coprime_degrees[id] - 1; // Exclude the unit
-    if (non_unit_coprimes < 1) continue;
-
-    int first_index = cached_occurrences[id][0];
-
-    for (int partner = 1; partner <= spec.element_count; ++partner) {
-      if (partner == unit_index || partner == first_index) continue;
-
-      if (gcd(cached_original_values[id], spec.sequence[partner]) == 1) {
-        for (int fourth = 1; fourth <= spec.element_count; ++fourth) {
-          if (fourth != unit_index && fourth != first_index && fourth != partner) {
-            return Quadruple{first_index, partner, unit_index, fourth};
-          }
-        }
-      }
-    }
-  }
-  return nullopt;
-}
-```
-
-### Phase 4: Degree-based heuristic search
-
-When special cases fail, we resort to a more sophisticated search based on coprimality degrees.
-
-#### 4.1 Prioritizing leaf vertices
-
-Vertices with degree 1 (leaves in the graph) are critical: they have only one possible partner. If we don't pair them immediately, they might block future solutions:
-
-```cpp
-// Handle leaf vertices (degree 1)
-for (size_t value_id = 0; value_id < compressor.unique_count(); ++value_id) {
-  if (cached_coprime_degrees[value_id] == 1) {
-    int leaf_index = cached_occurrences[value_id][0];
-
-    for (int partner = 1; partner <= spec.element_count; ++partner) {
-      if (partner != leaf_index && 
-          gcd(cached_original_values[value_id], spec.sequence[partner]) == 1) {
-        
-        // Temporarily remove both from consideration
-        analyzer->modify_element_presence(cached_squarefree_factors[value_id], -1);
-        analyzer->modify_element_presence(cached_squarefree_factors[partner_id], -1);
-
-        auto [third, fourth] = filtered_coprime_search(leaf_index, partner);
-
-        if (third != -1) {
-          return Quadruple{leaf_index, partner, third, fourth};
-        }
-
-        // Restore
-        analyzer->modify_element_presence(cached_squarefree_factors[value_id], +1);
-        analyzer->modify_element_presence(cached_squarefree_factors[partner_id], +1);
-
-        // Leaf can't form solution - no solution exists
-        return nullopt;
-      }
-    }
-  }
-}
-```
-
-#### 4.2 Bounded search with degree ordering
+### Why this search is complete
 
-For remaining elements, we sort by increasing degree and apply bounded search:
-
-```cpp
-// Build list of ALL indices sorted by degree of their VALUE
-vector<int> sorted_indices;
-sorted_indices.reserve(spec.element_count);
+The method is not heuristic.
 
-for (size_t value_id = 0; value_id < compressor.unique_count(); ++value_id) {
-  if (cached_coprime_degrees[value_id] >= 1) {
-    for (int idx : cached_occurrences[value_id]) {
-      sorted_indices.push_back(idx);
-    }
-  }
-}
+Take any valid first edge $(u, v)$ and assume that $u$ appears before $v$ in the degree-sorted order, say $u = p_i$ and $v = p_j$. Since the edge is valid,
 
-// Sort by degree of the value, then by index
-sort(sorted_indices.begin(), sorted_indices.end(), [this](int a, int b) {
-  int id_a = sequence_to_compressed_id[a];
-  int id_b = sequence_to_compressed_id[b];
-  if (cached_coprime_degrees[id_a] != cached_coprime_degrees[id_b]) {
-    return cached_coprime_degrees[id_a] < cached_coprime_degrees[id_b];
-  }
-  return a < b;
-});
+$$
+\deg(u) + \deg(v) \le K,
+$$
 
-// Try combinations with bounded search
-constexpr int SEARCH_WIDTH = 30;
+which implies $j \le R(i)$. Therefore $v$ belongs to the active window $A_i$. Since $\gcd(a_u, a_v)=1$, the Mobius count on $A_i$ is strictly positive, so the algorithm must detect some admissible partner while processing $i$.
 
-for (int primary_index : sorted_indices) {
-  vector<int> candidates;
-  candidates.reserve(SEARCH_WIDTH);
+Consequently, if the search phase fails, then no valid first edge exists and the answer is necessarily `0`.
 
-  for (int partner = 1; partner <= spec.element_count && 
-       static_cast<int>(candidates.size()) < SEARCH_WIDTH; ++partner) {
-    if (partner != primary_index && 
-        gcd(spec.sequence[primary_index], spec.sequence[partner]) == 1) {
-      candidates.push_back(partner);
-    }
-  }
+## Reconstructing the second edge
 
-  for (int secondary_index : candidates) {
-    // Try this pair and search for remaining coprime pair
-    // ... implementation details ...
-  }
-}
-```
+Once the first edge $(u, v)$ has been selected, we remove its contribution from the global divisibility counts. In the code this is done by copying `mult_cnt` into `rem_mult` and decrementing all divisors of $a_u$ and $a_v$.
 
----
+For every remaining index $i$, we compute its degree in the residual graph:
 
-## 5. Modern C++ implementation choices
+$$
+\deg_{\text{rem}}(i) =
+\sum_{d \mid a_i}\mu(d)\,\text{rem\_mult}[d] - [a_i = 1].
+$$
 
-The implementation leverages several modern C++ features and idioms for improved performance and readability.
+If $\deg_{\text{rem}}(i) > 0$, then there exists at least one remaining index $j$ such that $\gcd(a_i, a_j)=1$. A direct scan recovers one such $j$, and the quadruple
 
-### 5.1 Structured bindings and auto declarations
+$$
+(u, v, i, j)
+$$
 
-Modern C++ structured bindings enhance code readability:
+is a correct answer.
 
-```cpp
-auto [iter, inserted] = compression_map.try_emplace(value, compressed_data.size());
-auto [third, fourth] = filtered_coprime_search(leaf_index, partner);
-```
+This stage is also efficient:
+- the Mobius test is applied to each remaining index only once;
+- the linear scan is executed only for the first index whose residual degree is positive;
+- therefore reconstruction is linear after divisor preprocessing.
 
-### 5.2 std::span For zero-copy views
+## Correctness proof
 
-Using `std::span` (C++20) allows passing array views without copying:
+We can now summarize the argument formally.
 
-```cpp
-void compress(span<const int> input_sequence) {
-  // Process without copying the input data
-}
-```
+**Lemma 1.**
+For every index $i$,
 
-### 5.3 Designated initializers
+$$
+\deg(i) = \sum_{d \mid a_i} \mu(d)\, C[d] - [a_i = 1].
+$$
 
-C++20 designated initializers improve struct initialization clarity:
+**Proof.**
+For each array element $a_j$,
 
-```cpp
-compressed_data.push_back({
-  .original = value,
-  .compressed_id = static_cast<int>(compressed_data.size() - 1),
-  .occurrence_indices = {static_cast<int>(idx + 1)},
-  .squarefree_factors = NT_ENGINE.factorize_squarefree(value)
-});
-```
+$$
+\sum_{d \mid \gcd(a_i, a_j)} \mu(d)
+$$
 
-### 5.4 Constexpr and compile-time optimization
+is $1$ exactly when $\gcd(a_i, a_j)=1$, and $0$ otherwise. Summing over all $j$ produces the number of coprime neighbors of $i$. The only self-count occurs when $a_i=1$, so we subtract that term. $\square$
 
-Using `constexpr` enables compile-time computation where possible:
+**Lemma 2.**
+Let $(u, v)$ be an edge of the coprimality graph. After removing $u$ and $v$, the number of remaining edges is
 
-```cpp
-static constexpr size_t LIMIT = 1000001;
-constexpr int SEARCH_WIDTH = 30;
-```
+$$
+K - \bigl(\deg(u)+\deg(v)-1\bigr).
+$$
 
-### 5.5 Memory management and cache optimization
+**Proof.**
+All deleted edges are exactly those incident to $u$ or $v$. Their total number is $\deg(u)+\deg(v)$, except that the edge $(u, v)$ is counted twice. $\square$
 
-Strategic use of `reserve()` prevents vector reallocations:
+**Lemma 3.**
+An edge $(u, v)$ can be the first edge of a valid answer if and only if
 
-```cpp
-prime_list.reserve(80000); // Approximate prime count for better cache locality
-candidates.reserve(SEARCH_WIDTH);
-```
+$$
+\deg(u)+\deg(v) \le K.
+$$
 
----
+**Proof.**
+By Lemma 2, the residual graph contains at least one edge if and only if
 
-## 6. Complexity Analysis
+$$
+K - \bigl(\deg(u)+\deg(v)-1\bigr) > 0.
+$$
 
-### 6.1 Time complexity
+This is equivalent to $\deg(u)+\deg(v) \le K$. $\square$
 
-Analyzing each component:
+**Lemma 4.**
+If there exists a valid first edge, the search phase finds one.
 
-1. **Sieve Preprocessing**: $O(m)$ using linear sieve
-2. **Square-free Divisor Computation**: $O(U \times 2^{\omega(\text{max})})$ where $\omega(n)$ is the number of distinct primes
-3. **Divisibility Counting**: $O(m \log m)$
-4. **Phases 1-3**: $O(n)$ each
-5. **Phase 4**: $O(n \times \min(n, 30)) = O(n \times 30)$ with bounded search
+**Proof.**
+Take a valid first edge $(u, v)$ with $u = p_i$ and $v = p_j$ in the degree-sorted order, where $i < j$. By Lemma 3, $\deg(v) \le K - \deg(u)$, hence $j \le R(i)$ and $v \in A_i$. Since $u$ and $v$ are coprime, the Möbius count on $A_i$ is positive, so the algorithm detects a partner while processing $i$. $\square$
 
-**Total Complexity**: $O(m \log m + n \times 30 + U \times 2^{\omega(\text{max})})$
+**Lemma 5.**
+If the reconstruction phase outputs $(u, v, r, s)$, then the answer is correct.
 
-In practice, for the problem constraints ($m \leq 10^6$, $n \leq 2 \times 10^5$), the algorithm operates in near-linear time for most inputs.
+**Proof.**
+The indices are distinct by construction. The pair $(u, v)$ is coprime because it is chosen from the search phase via an explicit `gcd` check. The pair $(r, s)$ is coprime because `gcd(a_r, a_s)=1` is checked before output. $\square$
 
-### 6.2 Space complexity
+**Theorem.**
+For every test case, the algorithm outputs `0` if and only if no valid quadruple exists; otherwise it outputs four distinct indices satisfying the required condition.
 
-The main data structures require:
+**Proof.**
+If the algorithm outputs a quadruple, Lemma 5 proves correctness. If it outputs `0`, then either $K=0$, in which case no coprime pair exists at all, or the search phase fails. By Lemma 4, failure of the search phase implies that no valid first edge exists. By Lemma 3, no matching of size $2$ can then exist. $\square$
 
-- Sieve: $O(m)$
-- Square-free divisors: $O(U \times d(\text{max}))$
-- Divisibility counts: $O(m)$
-- Auxiliary structures: $O(n)$
+## Complexity analysis
 
-**Total Space**: $O(m + n + U \times d(\text{max}))$
+Let $A = 10^6$ be the maximum possible value of an array element.
 
----
+### Global precomputation
 
-## 7. Performance considerations and optimizations
+- Linear sieve for `g_mu` and `g_spf`: $O(A)$ time, $O(A)$ memory.
 
-### 7.1 Incremental updates
+This cost is paid once for the entire input.
 
-Instead of recalculating degrees after each element "removal," we update incrementally:
+### Per test case
 
-```cpp
-void modify_element_presence(const vector<int>& squarefree_factors, int delta) {
-  for (int divisor : squarefree_factors) {
-    divisor_multiplicities[divisor] += delta;
-  }
-}
-```
+Let $\tau(x)$ denote the number of divisors of $x$.
+- Frequency table and multiples transform: $O(m \log m)$
+- Divisor generation and degree evaluation:
+  $O\!\left(\sum_{i=1}^{n}\tau(a_i)\right)$
+- Sorting the indices by degree: $O(n \log n)$
+- Sliding-window search:
+  $O\!\left(\sum_{i=1}^{n}\tau(a_i) + n\right)$
+- Reconstruction:
+  $O\!\left(\sum_{i=1}^{n}\tau(a_i) + n\right)$
 
-This reduces the cost of each update from $O(m)$ to $O(d(\text{value}))$, typically very small.
+Hence the overall complexity per test case is
 
-### 7.2 Precomputation and caching
+$$
+O\!\left(m \log m + n \log n + \sum_{i=1}^{n}\tau(a_i)\right).
+$$
 
-All values depending only on unique values are computed once:
+This is comfortably within the contest limits. In particular, for numbers up to $10^6$, the divisor count is small, and the global constraints
 
-```cpp
-vector<int> cached_coprime_degrees;     // Precomputed coprime degrees per unique value
-vector<int> cached_original_values;     // Original values per compressed ID
-vector<vector<int>> cached_occurrences; // Occurrence indices per compressed ID
-```
+$$
+\sum n \le 2 \cdot 10^5,
+\qquad
+\sum m \le 10^6
+$$
 
-### 7.3 Early termination
+keep the total workload well under control.
 
-Each phase terminates as soon as it finds a solution, avoiding unnecessary computations:
+The memory usage is dominated by a handful of arrays of size $m+1$ together with the stored divisor lists, so it remains linear in the input scale.
 
-```cpp
-void solve() {
-  if (handle_unit_values()) return;
-  if (exploit_duplicates()) return;
-  if (handle_single_unit()) return;
-  if (process_leaf_vertices()) return;
-  if (general_search()) return;
-  
-  cout << "0\n";  // No solution
-}
-```
+## Notes on the C++ Implementation
 
----
+The final code uses the aliases and loop macros from my template library:
+- `I32`, `I64` for fixed-width integers;
+- `VecI32` and `Vec2D<I32>` for vectors;
+- `FOR(...)` for concise loop syntax;
+- `as<T>(x)` for explicit casts.
 
-## 8. Conclusion
+These are purely syntactic conveniences. The mathematical content of the algorithm is unchanged:
+- `mult_cnt` implements the global multiples counts $C[d]$;
+- `active_mult` implements the dynamic counts on the current search window;
+- the Mobius sum is used twice, once for the full graph and once for the active subset;
+- `reach[i]` encodes the degree bound $\deg(p_j) \le K - \deg(p_i)$.
 
-The resolution of the "Sea, You & copriMe" problem constitutes an excellent example of how the synergistic application of concepts from different areas of mathematics and computer science can lead to efficient solutions for computationally challenging problems. The pillars of this solution have been:
+This is one of the reasons I like this version of the solution more than the original one: the implementation mirrors the proof very closely.
 
-1. **Problem Abstraction**: Translating the problem into a graph model provided the conceptual framework for reasoning about its structure.
+## Conclusion
 
-2. **Power of Number Theory**: The employment of the Möbius function and inclusion-exclusion principle proved fundamental for performing otherwise prohibitive calculations.
+The central idea of the problem is not "how do I search four indices quickly?", but "how do I certify that one coprime pair leaves another coprime pair behind?" The exact answer is the inequality
 
-3. **Stratified Algorithm Design**: Prioritized handling of special and simple cases allowed avoiding complex computations for a vast class of inputs.
+$$
+\deg(u)+\deg(v) \le K.
+$$
 
-4. **Effective Heuristics**: The use of heuristics, such as priority to low-degree vertices and bounded search, drastically reduced the search space while maintaining solution correctness.
+Once the coprimality graph is viewed through that lens, Möbius inversion becomes the natural counting tool, and the rest of the algorithm follows from a clean sequence of reductions:
+1. count coprime neighbors efficiently;
+2. search exhaustively among degree-feasible first edges;
+3. reconstruct the remaining edge.
 
-5. **Modern C++ Implementation**: Leveraging modern C++ features like structured bindings, `std::span`, and designated initializers improved both performance and code readability.
-
-This approach demonstrates that, even in the modern context, mastery of classical algorithms and fundamental mathematical structures remains an irreplaceable and highly powerful tool for software engineering and complex problem solving. The combination of theoretical insights with practical implementation considerations showcases the elegance that can be achieved when mathematical rigor meets engineering pragmatism.
+The result is a solution that is mathematically precise, asymptotically efficient, and much cleaner than a case-by-case treatment of special values.
